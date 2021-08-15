@@ -10,6 +10,43 @@
   </head>
 
   <body>
+    <%= link_to 'TOP', root_path %>
+    <% if player_signed_in? %>
+      <li>
+        <%= link_to '新規投稿', new_post_path %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_player_session_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to 'マイページ', players_member_path(current_player.id) %>
+      </li>
+
+    <% else %>
+      <li>
+        <%= link_to "選手新規登録", new_player_registration_path %>
+      </li>
+      <li>
+        <%= link_to "選手ログイン", new_player_session_path %>
+      </li>
+    <% end %>
+
+    <% if school_signed_in? %>
+      <li>
+        <%= link_to "ログアウト", destroy_school_session_path, method: :delete %>
+      </li>
+      <li>
+        <%#= link_to 'マイページ', players_member_path(current_player.id) %>
+      </li>
+
+    <% else %>
+      <li>
+        <%= link_to "学校新規登録", new_school_registration_path %>
+      </li>
+      <li>
+        <%= link_to "学校ログイン", new_school_session_path %>
+      </li>
+    <% end %>
     <%= yield %>
   </body>
 </html>

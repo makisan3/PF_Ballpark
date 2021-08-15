@@ -1,0 +1,84 @@
+<div class="container">
+  <h2>-学校登録-</h2>
+  <%= form_with model: @school, url: school_registration_path, id: 'new_school', class: 'new_school', local: true do |f| %>
+    <%= render "schools/shared/error_messages", resource: resource %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>学校名</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :high_school_name, autofocus: true %>
+          </div>
+        </td>
+      <tr>
+        <th>監督名</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :manager_name, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>甲子園出場回数</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :koshien_times, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>寮</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :domitory, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :address, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>e-mail</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :email, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード</th>
+        <td>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード確認用</th>
+        <td>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit "登録する" %>
+  </div>
+  <% end %>
+
+  <%= render "schools/shared/links" %>
+
+</div>

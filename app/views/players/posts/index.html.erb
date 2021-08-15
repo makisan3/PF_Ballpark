@@ -1,0 +1,8 @@
+<% @posts.each do |post| %>
+<div>
+  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <p>タイトル：<%= post.title %></p>
+  <p>本文：<%= post.body %></p>
+  <p>選手名：<%= post.player.name %></p>
+</div>
+<% end %>

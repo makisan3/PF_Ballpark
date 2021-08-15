@@ -1,0 +1,84 @@
+<div class="container">
+  <h2>-選手登録-</h2>
+  <%= form_with model: @player, url: player_registration_path, id: 'new_player', class: 'new_player', local: true do |f| %>
+    <%= render "players/shared/error_messages", resource: resource %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>名前</th>
+        <td>
+          <div class="field">
+            <%= f.text_field :name, autofocus: true %>
+          </div>
+        </td>
+      </tr>
+    <tr>
+      <th>在籍校</th>
+      <td>
+        <div class="field">
+          <%= f.text_field :school %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>在籍チーム</th>
+      <td>
+        <div class="field">
+          <%= f.text_field :enrollment %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>学年</th>
+      <td>
+        <div class="field">
+          <%= f.select :grade, options_for_select(Player.grades.keys), {prompt: "選択してください"}, class: "prefecture-select" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>活動拠点</th>
+      <td>
+        <div class="field">
+          <%= f.select :base, options_for_select(Player.bases.keys), {prompt: "選択してください"}, class: "prefecture-select" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>e-mail</th>
+      <td>
+        <div class="field">
+          <%= f.text_field :email %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>パスワード</th>
+      <td>
+        <div class="field">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        パスワード確認用
+      </th>
+      <td>
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit "登録する", class: "btn btn-secondary center-block" %>
+  </div>
+  <% end %>
+
+</div>
