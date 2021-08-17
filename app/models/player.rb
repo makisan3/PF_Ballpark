@@ -5,6 +5,7 @@ class Player < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  attachment :player_image
   
   enum grade: {
     中学1年:1,中学2年:2,中学3年:3
@@ -20,5 +21,12 @@ class Player < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
   }
+
+  # deviseで用意されている処理に対して
+  # player_status が true (つまり退会している状態) なのかを
+  # 調べて、退会してなければログインする処理を付け足している
+  def active_for_authentication?
+    super && (self.player_status == false)
+  end
 
 end

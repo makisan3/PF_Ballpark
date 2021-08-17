@@ -8,30 +8,14 @@
         <th>学校名</th>
         <td>
           <div class="field">
-            <%= f.text_field :high_school_name, autofocus: true %>
+            <%= f.text_field :high_school_name, autofocus: true, placeholder: '〇〇高校' %>
           </div>
         </td>
       <tr>
         <th>監督名</th>
         <td>
           <div class="field">
-            <%= f.text_field :manager_name, autofocus: true %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th>甲子園出場回数</th>
-        <td>
-          <div class="field">
-            <%= f.text_field :koshien_times, autofocus: true %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th>寮</th>
-        <td>
-          <div class="field">
-            <%= f.text_field :domitory, autofocus: true %>
+            <%= f.text_field :manager_name, placeholder: '藤浪 翔平' %>
           </div>
         </td>
       </tr>
@@ -39,7 +23,23 @@
         <th>所在地</th>
         <td>
           <div class="field">
-            <%= f.text_field :address, autofocus: true %>
+            <%= f.text_field :address, placeholder: '東京都文京区後楽園1-1-1' %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>甲子園出場回数</th>
+        <td>
+          <div class="field">
+            春 <%= f.text_field :spring_koshien_times, placeholder: '0' %>　夏 <%= f.text_field :summer_koshien_times, placeholder: '0' %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>寮</th>
+        <td>
+          <div class="field">
+            <%= f.select :dormitory, options_for_select(School.dormitories.keys), {prompt: "選択してください"}, class: "prefecture-select" %>
           </div>
         </td>
       </tr>
@@ -47,7 +47,7 @@
         <th>e-mail</th>
         <td>
           <div class="field">
-            <%= f.text_field :email, autofocus: true %>
+            <%= f.text_field :email, placeholder: 'sample@example.com' %>
           </div>
         </td>
       </tr>
@@ -59,7 +59,7 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'パスワード' %>
           </div>
         </td>
       </tr>
@@ -68,17 +68,15 @@
         <td>
           <div class="field">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '確認用' %>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div class="actions">
-    <%= f.submit "登録する" %>
+    <%= f.submit "登録する", class: "btn btn-secondary center-block" %>
   </div>
   <% end %>
-
-  <%= render "schools/shared/links" %>
 
 </div>

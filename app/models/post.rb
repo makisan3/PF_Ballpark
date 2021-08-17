@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-  
+
   belongs_to :player
-  attachment :image 
-  
+  attachment :image
+
 end

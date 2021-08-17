@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
     when Player
       players_member_path(current_player.id)
     when School
-      root_path
+      schools_team_path(current_school.id)
     end
   end
-  
+
   def after_sign_in_path_for(resource)
     case resource
     when Admin
@@ -19,15 +19,15 @@ class ApplicationController < ActionController::Base
     when Player
       players_member_path(current_player.id)
     when School
-      root_path
+      schools_team_path(current_school.id)
     end
   end
-  
+
 
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :grade, :school, :enrollment, :base, :high_school_name, :manager_name, :koshien_times, :address, :domitory])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :grade, :school, :enrollment, :base, :high_school_name, :manager_name, :spring_koshien_times, :summer_koshien_times, :address, :dormitory])
   end
 end

@@ -34,13 +34,13 @@ class DeviseCreateSchools < ActiveRecord::Migration[5.2]
 
       t.string :high_school_name, null: false
       t.string :manager_name, nill: false
-      t.integer :koshien_times, null: false
+      t.integer :spring_koshien_times, null: false
+      t.integer :summer_koshien_times, null: false
       t.string :email, null: false
       t.string :encrypted_password, null: false
       t.string :address, null: false
-      t.string :domitory, null: false
-      t.string :high_school_image, null: true
-      t.string :high_school_videos, null: true
+      t.integer :dormitory, null: false
+      t.string :high_school_image_id, null: true
       t.text :high_school_pr, null: true
       t.boolean :school_status, null: false, default: false
 

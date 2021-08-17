@@ -35,8 +35,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_080741) do
     t.string "school", null: false
     t.string "enrollment", null: false
     t.integer "base", null: false
-    t.string "player_image"
-    t.string "player_videos"
+    t.string "player_image_id"
     t.text "player_pr"
     t.boolean "player_status", default: false, null: false
     t.datetime "created_at", null: false
@@ -47,9 +46,9 @@ ActiveRecord::Schema.define(version: 2021_08_11_080741) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "player_id", null: false
-    t.integer "high_school_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,11 +61,11 @@ ActiveRecord::Schema.define(version: 2021_08_11_080741) do
     t.datetime "remember_created_at"
     t.string "high_school_name", null: false
     t.string "manager_name"
-    t.integer "koshien_times", null: false
+    t.integer "spring_koshien_times", null: false
+    t.integer "summer_koshien_times", null: false
     t.string "address", null: false
-    t.string "domitory", null: false
-    t.string "high_school_image"
-    t.string "high_school_videos"
+    t.integer "dormitory", null: false
+    t.string "high_school_image_id"
     t.text "high_school_pr"
     t.boolean "school_status", default: false, null: false
     t.datetime "created_at", null: false

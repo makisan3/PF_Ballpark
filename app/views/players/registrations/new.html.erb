@@ -8,7 +8,7 @@
         <th>名前</th>
         <td>
           <div class="field">
-            <%= f.text_field :name, autofocus: true %>
+            <%= f.text_field :name, autofocus: true, placeholder: '藤浪 翔平' %>
           </div>
         </td>
       </tr>
@@ -16,7 +16,7 @@
       <th>在籍校</th>
       <td>
         <div class="field">
-          <%= f.text_field :school %>
+          <%= f.text_field :school, placeholder: '〇〇中学校' %>
         </div>
       </td>
     </tr>
@@ -24,7 +24,7 @@
       <th>在籍チーム</th>
       <td>
         <div class="field">
-          <%= f.text_field :enrollment %>
+          <%= f.text_field :enrollment, placeholder: '野球部or〇〇シニア、〇〇ボーイズ等' %>
         </div>
       </td>
     </tr>
@@ -32,7 +32,7 @@
       <th>学年</th>
       <td>
         <div class="field">
-          <%= f.select :grade, options_for_select(Player.grades.keys), {prompt: "選択してください"}, class: "prefecture-select" %>
+          <%= f.select :grade, options_for_select(Player.grades.keys), {prompt: "選択してください"} %>
         </div>
       </td>
     </tr>
@@ -40,7 +40,7 @@
       <th>活動拠点</th>
       <td>
         <div class="field">
-          <%= f.select :base, options_for_select(Player.bases.keys), {prompt: "選択してください"}, class: "prefecture-select" %>
+          <%= f.select :base, options_for_select(Player.bases.keys), {prompt: "選択してください"} %>
         </div>
       </td>
     </tr>
@@ -48,7 +48,7 @@
       <th>e-mail</th>
       <td>
         <div class="field">
-          <%= f.text_field :email %>
+          <%= f.text_field :email, placeholder: 'sample@example.com' %>
         </div>
       </td>
     </tr>
@@ -60,7 +60,7 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: 'パスワード' %>
         </div>
       </td>
     </tr>
@@ -70,7 +70,7 @@
       </th>
       <td>
         <div class="field">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '確認用' %>
         </div>
       </td>
     </tr>

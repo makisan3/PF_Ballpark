@@ -39,8 +39,7 @@ class DeviseCreatePlayers < ActiveRecord::Migration[5.2]
       t.string :school, null: false
       t.string :enrollment, null: false
       t.integer :base, null: false
-      t.string :player_image, null: true
-      t.string :player_videos, null: true
+      t.string :player_image_id, null: true
       t.text :player_pr, null: true
       t.boolean :player_status, null: false, default: false
 

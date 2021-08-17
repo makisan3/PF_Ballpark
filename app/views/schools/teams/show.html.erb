@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>-Team page-</h2>
+  <h2><%= current_school.high_school_name %></h2>
+  <%= attachment_image_tag @school, :high_school_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+
+  <% if @school.id == current_school.id %>
+    <p><%= link_to "⚙️", edit_schools_team_path(@school) %></p>
+  <% end %>
+
+  <table class="table">
+    <tbody>
+        <tr>
+            <td>学校名</td>
+            <td><%= current_school.high_school_name %></td>
+        </tr>
+        <tr>
+            <td>監督</td>
+            <td><%= current_school.manager_name %></td>
+        </tr>
+        <tr>
+            <td>所在地</td>
+            <td><%= current_school.address %></td>
+        </tr>
+        <tr>
+            <td>甲子園出場回数</td>
+            <td>春 | <%= current_school.spring_koshien_times %> 夏 | <%= current_school.summer_koshien_times %></td>
+        </tr>
+        <tr>
+            <td>寮</td>
+            <td><%= current_school.dormitory %></td>
+        </tr>
+    </tbody>
+  </table>
+
+
+</div>
