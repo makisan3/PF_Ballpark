@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>-検索結果-</h2>
+  <table class="table table-list">
+    <thead>
+      <tr>
+        <th>選手名</th>
+        <th>学年</th>
+        <th>学校</th>
+        <th>在籍チーム</th>
+        <th>活動拠点</th>
+      </tr>
+    </thead>
+    <% @players.each do |player| %>
+    <tbody>
+    <tr>
+      <td><%= player.name %> </td>
+      <td><%= player.grade %></td>
+      <td><%= player.school %></td>
+      <td><%= player.enrollment %></td>
+      <td><%= player.base %></td>
+    </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

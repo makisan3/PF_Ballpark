@@ -6,11 +6,11 @@ class Player < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   attachment :player_image
-  
+
   enum grade: {
     中学1年:1,中学2年:2,中学3年:3
   }
-  
+
   enum base: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
@@ -27,6 +27,14 @@ class Player < ApplicationRecord
   # 調べて、退会してなければログインする処理を付け足している
   def active_for_authentication?
     super && (self.player_status == false)
+  end
+
+  def self.search(params)
+    if params[:name].blank? && params[:grade].blank? && params[:base].blank? && params[:school].blank? && params[:enrollment].blank?
+      Player.all
+    else
+      Player.where('name LIKE ? AND school LIKE ? AND base LIKE ? AND grade LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:school]}%", "%#{params[:base]}%", "%#{params[:grade]}%", "%#{params[:enrollment]}%")
+    end
   end
 
 end

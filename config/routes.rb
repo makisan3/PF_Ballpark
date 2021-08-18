@@ -19,11 +19,14 @@ Rails.application.routes.draw do
   }
 
   root to: 'homes#top'
+  get '/searches' => 'schools/searches#search'
+  get '/searches/result' => 'schools/searches#result'
+
 
   # 退会確認画面&論理削除用のルーティング
   get '/players/members/:id/unsubscribe_check' => 'players/members#unsubscribe_check', as: 'unsubscribe_check'
   patch '/players/members/:id/unsubscribe' => 'players/members#unsubscribe', as: 'unsubscribe'
-  
+
   get '/schools/teams/:id/unsubscribe_confirm' => 'schools/teams#unsubscribe_confirm', as: 'unsubscribe_confirm'
   patch '/schools/teams/:id/unsubscribe' => 'schools/teams#unsubscribe', as: 'unsubscribe_school'
 
