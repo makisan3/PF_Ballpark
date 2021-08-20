@@ -2,6 +2,7 @@ class Players::MembersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @posts = Post.all
+    @like = Like.new
     #@post = Post.find(params[:id])
     #@posts = @player.posts.page(params[:page]).reverse_order
   end

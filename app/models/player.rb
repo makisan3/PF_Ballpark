@@ -5,6 +5,9 @@ class Player < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :likes
+  has_many :liked_schools, through: :likes, source: :school
+
   attachment :player_image
 
   enum grade: {
@@ -33,7 +36,7 @@ class Player < ApplicationRecord
     if params[:name].blank? && params[:grade].blank? && params[:base].blank? && params[:school].blank? && params[:enrollment].blank?
       Player.all
     else
-      Player.where('name LIKE ? AND school LIKE ? AND base LIKE ? AND grade LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:school]}%", "%#{params[:base]}%", "%#{params[:grade]}%", "%#{params[:enrollment]}%")
+      Player.where('name LIKE ? AND grade LIKE ? AND base LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:grade]}%", "%#{params[:base]}%", "%#{params[:school]}%", "%#{params[:enrollment]}%")
     end
   end
 

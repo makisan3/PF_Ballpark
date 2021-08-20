@@ -1,7 +1,7 @@
 <div class="container">
   <h2>-Team page-</h2>
   <h2><%= current_school.high_school_name %></h2>
-  <%= attachment_image_tag @school, :high_school_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <%= attachment_image_tag @school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
 
   <% if @school.id == current_school.id %>
     <p><%= link_to "⚙️", edit_schools_team_path(@school) %></p>
@@ -31,6 +31,17 @@
         </tr>
     </tbody>
   </table>
+  <h3>Pickup list</h3>
+  <% @like_players.each do |like| %>
+    <div>
+      <p><%= like.player.name %>
+         <%= like.player.school %>/<%= like.player.enrollment %>
+      </p>
+    </div>
+  <% end %>
+  <%= link_to schools_likes_path do %>
+    <h4>All Pickup</h4>
+  <% end %>
 
 
 </div>

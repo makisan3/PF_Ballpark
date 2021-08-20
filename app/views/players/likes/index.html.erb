@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>-検索結果-</h2>
+  <h2>-Pickup list-</h2>
   <table class="table table-list">
     <thead>
       <tr>
@@ -11,16 +11,11 @@
         <th>活動拠点</th>
       </tr>
     </thead>
-    <% @players.each do |player| %>
+    <% @likes_players.each do |player| %>
     <tbody>
       <tr>
         <th>
           <%= attachment_image_tag player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-          <% if current_school.already_liked?(player) %>
-            <%= link_to '❤', players_like_path(player), method: :delete %>
-          <% else %>
-            <%= link_to '🤍️', players_likes_path(player_id: player.id), method: :post %>
-          <% end %>
         </th>
         <td><%= link_to player.name, players_member_path(player.id) %></td>
         <td><%= player.grade %></td>

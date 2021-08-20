@@ -1,10 +1,8 @@
 <div class="container">
   <h2>-プロフィール編集-</h2>
   <%= form_with model: @player, url: players_member_path(current_player.id), method: :patch, local: true do |f| %>
-  <%= attachment_image_tag @player, :player_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <label for="inputImage">ProfileImage</label>
+  <%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %>
   <%= f.attachment_field :player_image %>
-
   <div>
     <%= f.label "選手名" %>
     <%= f.text_field :name %>

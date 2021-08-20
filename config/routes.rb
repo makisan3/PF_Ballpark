@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/searches' => 'schools/searches#search'
   get '/searches/result' => 'schools/searches#result'
+  
+  get '/schools/likes' => 'players/likes#index'
 
 
   # 退会確認画面&論理削除用のルーティング
@@ -34,9 +36,14 @@ Rails.application.routes.draw do
   scope module: :players do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
+  
+  #scope module: :schools do
+    #resources likes, only: [:index]
+  #end
 
   namespace :players do
     resources :members, only: [:show, :edit, :update]
+    resources :likes, only: [:create, :destroy]
   end
 
   namespace :schools do

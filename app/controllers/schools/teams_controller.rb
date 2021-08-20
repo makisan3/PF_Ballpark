@@ -1,6 +1,7 @@
 class Schools::TeamsController < ApplicationController
   def show
     @school = School.find(params[:id])
+    @like_players = Like.all
   end
 
   def edit

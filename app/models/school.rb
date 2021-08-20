@@ -4,6 +4,13 @@ class School < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_players, through: :likes, source: :player
+  
+  def already_liked?(player)
+    self.likes.exists?(player_id: player.id)
+  end
+
   attachment :high_school_image
 
   enum dormitory: {

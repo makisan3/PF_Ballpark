@@ -3,7 +3,6 @@ class Schools::SearchesController < ApplicationController
   end
 
   def result
-
     #Viewのformで取得したパラメータをモデルに渡す
     @players = Player.search(params)
     if @players.blank?
@@ -11,6 +10,7 @@ class Schools::SearchesController < ApplicationController
       render :search
       return
     end
+    @like = Like.new
   end
 
 end
