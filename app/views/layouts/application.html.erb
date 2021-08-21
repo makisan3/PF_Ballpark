@@ -21,15 +21,20 @@
 
           <ul class="navbar-nav ml-auto">
 
-            <% if player_signed_in? %>
+            <% if admin_signed_in? %>
+              <li class="header-name">管理者ログイン</li>
+              <li class="nav"><%= link_to "選手一覧", admins_players_path, class: "nav-link navbar-light" %></li>
+              <li class="nav"><%= link_to "学校一覧", admins_schools_path, class: "nav-link navbar-light" %></li>
+              <li class="nav"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link navbar-light" %></li>
+            <% end %>
 
+            <% if player_signed_in? %>
               <li class="header-name">
                 <%= current_player.name %>でログイン🏟
               </li>
               <li class="nav"><%= link_to '選手マイページ', players_member_path(current_player.id), class: "nav-link navbar-light" %></li>
               <li class="nav"><%= link_to '新規投稿', new_post_path, class: "nav-link navbar-light" %></li>
               <li class="nav"><%= link_to "ログアウト", destroy_player_session_path, method: :delete, class: "nav-link navbar-light" %></li>
-
             <% end %>
 
             <% if school_signed_in? %>
@@ -42,7 +47,7 @@
               <li class="nav"><%= link_to "ログアウト", destroy_school_session_path, method: :delete, class: "nav-link navbar-light" %></li>
             <% end %>
 
-            <% if school_signed_in? == false && player_signed_in? == false %>
+            <% if school_signed_in? == false && player_signed_in? == false && admin_signed_in? == false %>
               <li class="nav"><%= link_to "選手新規登録", new_player_registration_path, class: "nav-link navbar-light" %></li>
               <li class="nav"><%= link_to "選手ログイン", new_player_session_path, class: "nav-link navbar-light" %></li>
               <li class="nav"><%= link_to "学校新規登録", new_school_registration_path, class: "nav-link navbar-light" %></li>

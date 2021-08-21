@@ -1,6 +1,6 @@
 <div class="container">
   <h2>-Player page-</h2>
-  <h2><%= current_player.name %></h2>
+  <h2><%= @player.name %></h2>
   <%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %>
 
   <% if @player.id == current_player.id %>
@@ -11,23 +11,23 @@
     <tbody>
         <tr>
             <td>名前</td>
-            <td><%= current_player.name %></td>
+            <td><%= @player.name %></td>
         </tr>
         <tr>
             <td>学年</td>
-            <td><%= current_player.grade %></td>
+            <td><%= @player.grade %></td>
         </tr>
         <tr>
             <td>学校/在籍チーム</td>
-            <td><%= current_player.school %>/<%= current_player.enrollment %></td>
+            <td><%= @player.school %>/<%= @player.enrollment %></td>
         </tr>
         <tr>
             <td>拠点</td>
-            <td><%= current_player.base %></td>
+            <td><%= @player.base %></td>
         </tr>
         <tr>
             <td>PR</td>
-            <td><%= current_player.player_pr %></td>
+            <td><%= @player.player_pr %></td>
         </tr>
     </tbody>
   </table>

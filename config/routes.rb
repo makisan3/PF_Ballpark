@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/searches' => 'schools/searches#search'
   get '/searches/result' => 'schools/searches#result'
-  
+
   get '/schools/likes' => 'players/likes#index'
 
 
@@ -36,10 +36,13 @@ Rails.application.routes.draw do
   scope module: :players do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
-  
+
   #scope module: :schools do
     #resources likes, only: [:index]
   #end
+  resources :players, only: [:show, :edit, :update]　do
+    resources :likes, only: [:create, :destroy]
+    end
 
   namespace :players do
     resources :members, only: [:show, :edit, :update]
@@ -48,6 +51,11 @@ Rails.application.routes.draw do
 
   namespace :schools do
     resources :teams, only: [:show, :edit, :update]
+  end
+
+  namespace :admins do
+    resources :players, only: [:index, :edit, :update]
+    resources :schools, only: [:index, :edit, :update]
   end
 
 end

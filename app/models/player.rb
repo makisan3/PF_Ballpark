@@ -36,7 +36,7 @@ class Player < ApplicationRecord
     if params[:name].blank? && params[:grade].blank? && params[:base].blank? && params[:school].blank? && params[:enrollment].blank?
       Player.all
     else
-      Player.where('name LIKE ? AND grade LIKE ? AND base LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:grade]}%", "%#{params[:base]}%", "%#{params[:school]}%", "%#{params[:enrollment]}%")
+      Player.where('name LIKE ? AND grade LIKE ? AND base LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:grade]}%", "%#{params[:base]}", "%#{params[:school]}%", "%#{params[:enrollment]}%")
     end
   end
 

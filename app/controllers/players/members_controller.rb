@@ -30,7 +30,7 @@ class Players::MembersController < ApplicationController
     @player.update(player_status: true) # 論理削除フラグを立てる
     reset_session # ログアウト処理
     flash[:notice] = '退会しました。'
-    
+
     redirect_to :root
   end
 

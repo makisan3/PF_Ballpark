@@ -6,9 +6,9 @@
       <p>選手名</p>
       <%= text_field_tag :name %>
       <p>学年</p>
-      <%= select_tag :grade, options_for_select(Player.grades.keys), {prompt: "選択してください"} %>
+      <%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %>
       <p>活動拠点</p>
-      <%= select_tag :base, options_for_select(Player.bases.keys), {prompt: "選択してください"} %>
+      <%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %>
     </div>
     <div>
       <p>学校名</p>
