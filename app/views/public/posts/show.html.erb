@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>-<%= @post.player.name %>のNote-</h2>
+  <% if player_signed_in? && @player.id == current_player.id %>
+    <h3><%= link_to "⚙️", edit_post_path(@post) %></h3>
+  <% end %>
+  <%= attachment_image_tag @post.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+  <p><%= @post.player.name %></p>
+  <p><%= @post.created_at.strftime('%Y/%m/%d') %> 投稿</p>
+  <p>-<%= @post.title %>-</p>
+  <p><%= @post.body %></p>
+  <%= attachment_image_tag @post, :image, :fill, 300, 300 %>
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>-Pickup list-</h2>
+  <table class="table table-list">
+    <thead>
+      <tr>
+        <th></th>
+        <th>選手名</th>
+        <th>学年</th>
+        <th>学校</th>
+        <th>在籍チーム</th>
+        <th>活動拠点</th>
+      </tr>
+    </thead>
+    <% @likes.each do |like| %>
+    <tbody>
+      <tr>
+        <th>
+          <%= attachment_image_tag like.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+        </th>
+        <td><%= link_to like.player.name, player_path(like.player.id) %></td>
+        <td><%= like.player.grade %></td>
+        <td><%= like.player.school %></td>
+        <td><%= like.player.enrollment %></td>
+        <td><%= like.player.base %></td>
+        <td>
+          <% if current_school.already_liked?(like.player) %>
+            <%= link_to '❤', player_like_path(player_id: like.player.id), method: :delete %>
+          <% else %>
+            <%= link_to '🤍️', player_likes_path(player_id: like.player.id), method: :post %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>-プロフィール編集-</h2>
+  <%= form_with model: @player, url: player_path(current_player.id), method: :patch, local: true do |f| %>
+  <%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+  <%= f.attachment_field :player_image %>
+  <div>
+    <%= f.label "選手名" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label "在籍校" %>
+    <%= f.text_field :school %>
+  </div>
+  <div>
+    <%= f.label "在籍チーム" %>
+    <%= f.text_field :enrollment %>
+  </div>
+  <div>
+    <%= f.label "学年" %>
+    <%= f.select :grade, options_for_select(Player.grades.keys, selected: @player.grade), {prompt: "選択してください"} %>
+  </div>
+  <div>
+    <%= f.label "活動拠点" %>
+    <%= f.select :base, options_for_select(Player.bases.keys, selected: @player.base), {prompt: "選択してください"} %>
+  </div>
+  <div>
+    <%= f.label "e-mail" %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label "活動PR" %>
+    <%= f.text_area :player_pr %>
+  </div>
+
+
+  <div class="actions col-md-12">
+    <%= link_to "保存せずに戻る", player_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    <%= f.submit "編集内容を保存する",class: "btn btn-primary save col-xs-6" %>
+    <%= link_to '退会する', unsubscribe_check_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
+  </div>
+
+  <% end %>
+
+
+
+
+</div>

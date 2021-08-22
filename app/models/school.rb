@@ -6,7 +6,9 @@ class School < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_players, through: :likes, source: :player
-  
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
   def already_liked?(player)
     self.likes.exists?(player_id: player.id)
   end

@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>-School list-</h2>
+  <table class="table table-list">
+    <thead>
+      <tr>
+        <th>学校ID</th>
+        <th>学校</th>
+        <th>監督</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <% @schools.each do |school| %>
+    <tbody>
+      <tr>
+        <td><%= school.id %></td>
+        <td><%= link_to school.high_school_name, edit_admin_school_path(school.id) %></td>
+        <td><%= school.manager_name %></td>
+        <td>
+          <% if school.school_status == true %>
+            <p><i class="fas fa-bullseye blue"></i>退会</p>
+          <% else %>
+            <p><i class="fas fa-bullseye red"></i>有効</p>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+
+</div>

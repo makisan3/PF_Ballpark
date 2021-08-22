@@ -7,6 +7,8 @@ class Player < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes
   has_many :liked_schools, through: :likes, source: :school
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   attachment :player_image
 
@@ -33,11 +35,25 @@ class Player < ApplicationRecord
   end
 
   def self.search(params)
-    if params[:name].blank? && params[:grade].blank? && params[:base].blank? && params[:school].blank? && params[:enrollment].blank?
-      Player.all
-    else
-      Player.where('name LIKE ? AND grade LIKE ? AND base LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:grade]}%", "%#{params[:base]}", "%#{params[:school]}%", "%#{params[:enrollment]}%")
-    end
+    #if params[:name].blank? && params[:grade].blank? && params[:base].blank? && params[:school].blank? && params[:enrollment].blank?
+      #Player.all
+    #else
+      #Player.where('name LIKE ? AND grade LIKE ? AND base LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", params[:grade].to_i, params[:base].to_i, "%#{params[:school]}%", "%#{params[:enrollment]}%")
+      #byebug
+      # Player.where("name LIKE ?", "#{params[:name]}").where("")
+      #players = Player.where("name LIKE ?", "#{params[:name]}")
+      #players = players.where("grade LIKE ?", "#{params[:grade]}") unless params[:grade] == ""
+      #players = Player.where('name LIKE ? AND school LIKE ? AND enrollment LIKE ?', "%#{params[:name]}%", "%#{params[:school]}%", "%#{params[:enrollment]}%")
+      players = Player.all
+      players = players.where('name LIKE ?', "%#{params[:name]}%" ) unless params[:name] == ""
+      players = players.where('school LIKE ?', "%#{params[:school]}%" ) unless params[:shool] == ""
+      players = players.where('enrollment LIKE ?', "%#{params[:enrollment]}%" ) unless params[:enrollment] == ""
+      players = players.where(grade: params[:grade].to_i) unless params[:grade] == ""
+      players = players.where(base: params[:base].to_i) unless params[:base] == ""
+      players
+    #end
   end
+
+
 
 end

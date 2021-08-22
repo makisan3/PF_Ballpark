@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>-プロフィール編集-</h2>
+  <%= form_with model: @school, url: school_path(current_school.id), method: :patch, local: true do |f| %>
+  <%= attachment_image_tag @school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+  <%= f.attachment_field :high_school_image %>
+  <div>
+    <%= f.label "学校名" %>
+    <%= f.text_field :high_school_name %>
+  </div>
+  <div>
+    <%= f.label "監督" %>
+    <%= f.text_field :manager_name %>
+  </div>
+  <div>
+    <%= f.label "所在地" %>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label "甲子園出場回数" %>
+    春 <%= f.text_field :spring_koshien_times %> 夏 <%= f.text_field :summer_koshien_times %>
+  </div>
+  <div>
+    <%= f.label "寮" %>
+    <%= f.select :dormitory, options_for_select(School.dormitories.keys ,selected: @school.dormitory), {prompt: "選択してください"}  %>
+  </div>
+  <div>
+    <%= f.label "e-mail" %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label "活動PR" %>
+  </div>
+
+  <div class="actions col-md-12">
+    <%= link_to "保存せずに戻る", school_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    <%= f.submit "編集内容を保存する",class: "btn btn-primary save col-xs-6" %>
+    <%= link_to '退会する', unsubscribe_confirm_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
+  </div>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <%= flash[:alert] %>
+  <h2>-選手検索-</h2>
+  <%= form_tag(searches_result_path,:method => 'get', autocomplete: 'off' ) do %>
+    <div>
+      <p>選手名</p>
+      <%= text_field_tag :name %>
+      <p>学年</p>
+      <%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %>
+      <p>活動拠点</p>
+      <%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %>
+    </div>
+    <div>
+      <p>学校名</p>
+      <%= text_field_tag :school %>
+      <p>在籍チーム</p>
+      <%= text_field_tag :enrollment %>
+    </div>
+
+    <%= submit_tag '検索する', class: "btn btn-warning" %>
+  <% end %>
+</div>

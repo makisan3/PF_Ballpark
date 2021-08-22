@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>-Message-</h2>
+
+  <div class="message">
+   <%= render 'userlist', locals: { entry_all: @entry_all } %>
+
+    <div class="message-box">
+      <div class="message-pair">
+      <% @entries.each do |entry| %>
+        <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+        <%#= entry.player.name %>
+        <%= link_to entry.player&.name, player_path(entry.player.id) %>
+      <% end %>
+      </div>
+
+      <div class="chat">
+        <% if @messages.present? %>
+          <% @messages.each do |message| %>
+            <div class="chat-hukidashi"> <strong><%= message.content %></strong> <br>
+              <%= message.created_at.strftime("%Y/%m/%d %H:%M")%>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="sending">
+        <%= form_with(model: @message, url: room_messages_path(@room.id)) do |f| %>
+          <%= f.text_field :content, placeholder: "メッセージを作成" , size: 70, class:"form-text-field" %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.submit "送信",class: 'form-submit'%>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,61 +1,56 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, controllers: {
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
-    registrations: 'admins/registrations'
+  root to: 'homes#top'
+
+  devise_for :admin, controllers: {
+    sessions: 'admin/sessions',
+    passwords: 'admin/passwords',
+    registrations: 'admin/registrations'
   }
 
   devise_for :schools, controllers: {
-    sessions: 'schools/sessions',
-    passwords: 'schools/passwords',
-    registrations: 'schools/registrations'
+    sessions: 'public/schools/sessions',
+    passwords: 'public/schools/passwords',
+    registrations: 'public/schools/registrations'
   }
 
   devise_for :players, controllers: {
-    sessions: 'players/sessions',
-    passwords: 'players/passwords',
-    registrations: 'players/registrations'
+    sessions: 'public/players/sessions',
+    passwords: 'public/players/passwords',
+    registrations: 'public/players/registrations'
   }
 
-  root to: 'homes#top'
-  get '/searches' => 'schools/searches#search'
-  get '/searches/result' => 'schools/searches#result'
-
-  get '/schools/likes' => 'players/likes#index'
-
-
-  # 退会確認画面&論理削除用のルーティング
-  get '/players/members/:id/unsubscribe_check' => 'players/members#unsubscribe_check', as: 'unsubscribe_check'
-  patch '/players/members/:id/unsubscribe' => 'players/members#unsubscribe', as: 'unsubscribe'
-
-  get '/schools/teams/:id/unsubscribe_confirm' => 'schools/teams#unsubscribe_confirm', as: 'unsubscribe_confirm'
-  patch '/schools/teams/:id/unsubscribe' => 'schools/teams#unsubscribe', as: 'unsubscribe_school'
-
-
-  scope module: :players do
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  end
-
-  #scope module: :schools do
-    #resources likes, only: [:index]
-  #end
-  resources :players, only: [:show, :edit, :update]　do
-    resources :likes, only: [:create, :destroy]
-    end
-
-  namespace :players do
-    resources :members, only: [:show, :edit, :update]
-    resources :likes, only: [:create, :destroy]
-  end
-
-  namespace :schools do
-    resources :teams, only: [:show, :edit, :update]
-  end
-
-  namespace :admins do
+  namespace :admin do
     resources :players, only: [:index, :edit, :update]
     resources :schools, only: [:index, :edit, :update]
+  end
+
+  scope module: :public do
+
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :players, only: [:show, :edit, :update] do
+      post "likes" => "likes#create", as: "likes"
+      delete "like" => "likes#destroy", as: "like"
+    end
+
+    resources :schools do
+      get '/likes_players' => 'likes#like'
+    end
+
+    resources :rooms, only: [:create,:show, :index] do
+      resources :messages, only: [:create]
+    end
+
+
+      # 退会確認画面&論理削除用のルーティング
+      get 'unsubscribe_check' => 'players#unsubscribe_check', as: 'unsubscribe_check'
+      patch 'players/unsubscribe' => 'players#unsubscribe', as: 'unsubscribe'
+      get 'unsubscribe_confirm' => 'schools#unsubscribe_confirm', as: 'unsubscribe_confirm'
+      patch 'schools/unsubscribe' => 'schools#unsubscribe', as: 'unsubscribe_school'
+
+      get '/searches' => 'schools/searches#search'
+      get '/searches/result' => 'schools/searches#result'
+
   end
 
 end
