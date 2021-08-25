@@ -1,0 +1,38 @@
+.mypage-pickup-all {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mypage-pickup-list {
+  line-height: 3rem;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 0.2px #ccc;
+}
+
+.mypage-like-name {
+  line-height: 3rem;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+}
+
+.mypage-like-school {
+  min-width: 300px;
+  text-align: center;
+}
+
+.top-school {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-list {
+  display: inline-flex;
+}
+
+strong {
+  color: #000000;
+}

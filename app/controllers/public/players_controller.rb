@@ -3,7 +3,7 @@ class Public::PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @posts = Post.all
+    @posts = @player.posts
     @like = Like.new
 
     if current_school

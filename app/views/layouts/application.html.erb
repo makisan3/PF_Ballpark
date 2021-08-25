@@ -4,71 +4,69 @@
     <title>Ballpark</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/">Ballpark</a>
+    <div class="footerFixed">
+      <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="/">Ballpark</a>
 
-        <div class="collapse navbar-collapse justify-content-around" id="navbarNav4">
+          <div class="collapse navbar-collapse justify-content-around" id="navbarNav4">
 
-          <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
 
-            <% if admin_signed_in? %>
-              <li class="header-name">管理者ログイン</li>
-              <li class="nav"><%= link_to "選手一覧", admin_players_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "学校一覧", admin_schools_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link navbar-light" %></li>
-            <% end %>
+              <% if admin_signed_in? %>
+                <li class="header-name">管理者ログイン</li>
+                <li class="nav"><%= link_to "選手一覧", admin_players_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "学校一覧", admin_schools_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link navbar-light" %></li>
+              <% end %>
 
-            <% if player_signed_in? %>
-              <li class="header-name">
-                <%= current_player.name %>でログイン🏟
-              </li>
-              <li class="nav"><%= link_to '選手マイページ', player_path(current_player.id), class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to '新規投稿', new_post_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to 'メッセージ', rooms_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "ログアウト", destroy_player_session_path, method: :delete, class: "nav-link navbar-light" %></li>
-            <% end %>
+              <% if player_signed_in? %>
+                <li class="header-name">
+                  <%= current_player.name %>でログイン🏟
+                </li>
+                <li class="nav"><%= link_to '選手マイページ', player_path(current_player.id), class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to '新規投稿', new_post_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to 'メッセージ', rooms_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "ログアウト", destroy_player_session_path, method: :delete, class: "nav-link navbar-light" %></li>
+              <% end %>
 
-            <% if school_signed_in? %>
-              <li class="header-name">
-                <%= current_school.high_school_name %>でログイン🏟
-              </li>
-              <li class="nav"><%= link_to '学校マイページ', school_path(current_school.id), class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to '選手検索', searches_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to 'ピックアップリスト', school_likes_players_path(current_school.id), class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to 'メッセージ', rooms_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "ログアウト", destroy_school_session_path, method: :delete, class: "nav-link navbar-light" %></li>
-            <% end %>
+              <% if school_signed_in? %>
+                <li class="header-name">
+                  <%= current_school.high_school_name %>でログイン🏟
+                </li>
+                <li class="nav"><%= link_to '学校マイページ', school_path(current_school.id), class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to '選手検索', searches_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to 'ピックアップリスト', school_likes_players_path(current_school.id), class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to 'メッセージ', rooms_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "ログアウト", destroy_school_session_path, method: :delete, class: "nav-link navbar-light" %></li>
+              <% end %>
 
-            <% if school_signed_in? == false && player_signed_in? == false && admin_signed_in? == false %>
-              <li class="nav"><%= link_to "選手新規登録", new_player_registration_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "選手ログイン", new_player_session_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "学校新規登録", new_school_registration_path, class: "nav-link navbar-light" %></li>
-              <li class="nav"><%= link_to "学校ログイン", new_school_session_path, class: "nav-link navbar-light" %></li>
-            <% end %>
+              <% if school_signed_in? == false && player_signed_in? == false && admin_signed_in? == false %>
+                <li class="nav"><%= link_to "選手新規登録", new_player_registration_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "選手ログイン", new_player_session_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "学校新規登録", new_school_registration_path, class: "nav-link navbar-light" %></li>
+                <li class="nav"><%= link_to "学校ログイン", new_school_session_path, class: "nav-link navbar-light" %></li>
+              <% end %>
 
-          </ul>
-      </nav>
-    </header>
-    <%= yield %>
-    <footer>
-      <div class='container ml-6'>
-        <div class='row'>
-          <div class='mx-auto'>
-             <p>Copyright © Ballpark All Rights Reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+            </ul>
+        </nav>
+      </header>
+      <main>
+      <%= yield %>
+      </main>
+      <footer>
+        <p>Copyright © Ballpark All Rights Reserved.</p>
+      </footer>
+    </div>
   </body>
 </html>

@@ -1,13 +1,12 @@
 <div class="container">
-
-  <h2>-学校ログイン-</h2>
+  <h2 class="page-title session">-学校ログイン-</h2>
   <%= form_with model: @school, url: school_session_path, local: true do |f| %>
     <div class="text-center">
-      <div class="login d-flex">
+      <div class="login d-flex session">
         <p class="login-text">e-mail</p>
         <div class="login-text"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
       </div>
-      <div class="login d-flex">
+      <div class="login d-flex session">
         <p class="login-text">password</p>
         <div class="login-text"><%= f.password_field :password, autocomplete: "current-password" %></div>
       </div>
@@ -20,9 +19,9 @@
       <!--</div>-->
     <%# end %>
 
-    <div class="actions">
-      <%= f.submit "ログイン" %>
-      <%= link_to 'ゲストログイン', new_school_session_path, class: "btn btn-secondary" %>
+    <div class="d-flex justify-content-center btn-session">
+      <%= f.submit "ログイン", class: "btn btn-primary w-25 save col-xs-6 btn-lg" %>
+      <%#= link_to 'ゲストログイン', new_player_session_path, class: "btn btn-secondary" %>
     </div>
   <% end %>
 

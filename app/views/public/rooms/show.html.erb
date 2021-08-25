@@ -1,10 +1,11 @@
 <div class="container">
-  <h2>-Message-</h2>
+  <h2 class="page-title">-Message-</h2>
 
   <div class="message">
-   <%= render 'userlist', locals: { entry_all: @entry_all } %>
+   <%#= render 'userlist', locals: { entry_all: @entry_all } %>
 
     <div class="message-box">
+      <% if school_signed_in? %>
       <div class="message-pair">
       <% @entries.each do |entry| %>
         <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
@@ -12,15 +13,58 @@
         <%= link_to entry.player&.name, player_path(entry.player.id) %>
       <% end %>
       </div>
+      <% else %>
+      <div class="message-pair">
+      <% @entries.each do |entry| %>
+        <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+        <%#= entry.player.name %>
+        <%= link_to entry.school&.high_school_name, school_path(entry.school.id) %>
+      <% end %>
+      </div>
+      <% end %>
 
       <div class="chat">
+      <% if school_signed_in? %>
         <% if @messages.present? %>
-          <% @messages.each do |message| %>
-            <div class="chat-hukidashi"> <strong><%= message.content %></strong> <br>
-              <%= message.created_at.strftime("%Y/%m/%d %H:%M")%>
-            </div>
+          <% @messages.each do |m| %>
+          <!--メッセージがSchoolによるものだったら-->
+            <% if m.school_id %>
+              <!--メッセージを右に寄せる-->
+              <div class="right-message">
+                <%= m.content %><br>
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
+              </div>
+          <!--メッセージがPlayerによるものだったら-->
+            <% else %>
+              <!--メッセージを左に寄せる-->
+              <div class="left-message">
+                <%= m.content %><br>
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
+      <% elsif player_signed_in? %>
+        <% if @messages.present? %>
+          <% @messages.each do |m| %>
+          <!--メッセージがPlayerによるものだったら-->
+            <% if m.player_id %>
+              <!--メッセージを右に寄せる-->
+              <div class="right-message">
+                <%= m.content %><br>
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
+              </div>
+          <!--メッセージがSchoolによるものだったら-->
+            <% else %>
+              <!--メッセージを左に寄せる-->
+              <div class="left-message">
+                <%= m.content %><br>
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
       </div>
 
       <div class="sending">

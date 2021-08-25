@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+    
+    # 退会確認画面&論理削除用のルーティング
+    get 'unsubscribe_check' => 'players#unsubscribe_check', as: 'unsubscribe_check'
+    patch 'players/unsubscribe' => 'players#unsubscribe', as: 'unsubscribe'
+    get 'unsubscribe_confirm' => 'schools#unsubscribe_confirm', as: 'unsubscribe_confirm'
+    patch 'schools/unsubscribe' => 'schools#unsubscribe', as: 'unsubscribe_school'
 
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :players, only: [:show, :edit, :update] do
@@ -40,13 +46,6 @@ Rails.application.routes.draw do
     resources :rooms, only: [:create,:show, :index] do
       resources :messages, only: [:create]
     end
-
-
-      # 退会確認画面&論理削除用のルーティング
-      get 'unsubscribe_check' => 'players#unsubscribe_check', as: 'unsubscribe_check'
-      patch 'players/unsubscribe' => 'players#unsubscribe', as: 'unsubscribe'
-      get 'unsubscribe_confirm' => 'schools#unsubscribe_confirm', as: 'unsubscribe_confirm'
-      patch 'schools/unsubscribe' => 'schools#unsubscribe', as: 'unsubscribe_school'
 
       get '/searches' => 'schools/searches#search'
       get '/searches/result' => 'schools/searches#result'

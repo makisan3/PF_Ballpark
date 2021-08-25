@@ -8,11 +8,17 @@ class Public::RoomsController < ApplicationController
     @room = Room.create
     @entry = Entry.create(params.require(:entry).permit(:player_id, :room_id).merge({room_id: @room.id, school_id: current_school.id}))
     redirect_to "/rooms/#{@room.id}"
+    #メッセージがschollによるものだったらis_school=true,playerによるものだったらis_school=false
+    if school_signed_in?
+      @message.is_school = true
+    elsif player_signed_in?
+      @message.is_school = false
+    end
   end
 
   def show
     @room = Room.find(params[:id])
-    if Entry.where(school_id: current_school.id,room_id: @room.id).present?
+    if school_signed_in? && Entry.where(school_id: current_school.id,room_id: @room.id).present?
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries

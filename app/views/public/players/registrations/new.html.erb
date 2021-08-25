@@ -1,14 +1,14 @@
 <div class="container">
-  <h2>-選手登録-</h2>
+  <h2 class="page-title registration">-選手登録-</h2>
   <%= form_with model: @player, url: player_registration_path, id: 'new_player', class: 'new_player', local: true do |f| %>
-    <%= render "players/shared/error_messages", resource: resource %>
-  <table class="table">
+    <%= render "public/players/shared/error_messages", resource: resource %>
+  <table class="table table-bordered registration">
     <tbody>
       <tr>
         <th>名前</th>
         <td>
           <div class="field">
-            <%= f.text_field :name, autofocus: true, placeholder: '藤浪 翔平' %>
+            <%= f.text_field :name, :size=>"60", autofocus: true, placeholder: '名字 名前' %>
           </div>
         </td>
       </tr>
@@ -16,7 +16,7 @@
       <th>在籍校</th>
       <td>
         <div class="field">
-          <%= f.text_field :school, placeholder: '〇〇中学校' %>
+          <%= f.text_field :school, :size=>"60", placeholder: '〇〇中学校' %>
         </div>
       </td>
     </tr>
@@ -24,7 +24,7 @@
       <th>在籍チーム</th>
       <td>
         <div class="field">
-          <%= f.text_field :enrollment, placeholder: '野球部or〇〇シニア、〇〇ボーイズ等' %>
+          <%= f.text_field :enrollment, :size=>"60", placeholder: '野球部又はクラブチーム名(〇〇シニア、〇〇ボーイズ等)' %>
         </div>
       </td>
     </tr>
@@ -48,7 +48,7 @@
       <th>e-mail</th>
       <td>
         <div class="field">
-          <%= f.text_field :email, placeholder: 'sample@example.com' %>
+          <%= f.text_field :email, :size=>"60", placeholder: 'sample@example.com' %>
         </div>
       </td>
     </tr>
@@ -58,9 +58,9 @@
         <div class="field">
           <%= f.label :password %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %>文字以上の半角英数字)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: 'パスワード' %>
+          <%= f.password_field :password, :size=>"60", autocomplete: "new-password", placeholder: 'パスワード' %>
         </div>
       </td>
     </tr>
@@ -70,14 +70,14 @@
       </th>
       <td>
         <div class="field">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '確認用' %>
+          <%= f.password_field :password_confirmation, :size=>"60", autocomplete: "new-password", placeholder: 'パスワード再入力' %>
         </div>
       </td>
     </tr>
     </tbody>
   </table>
-  <div class="actions">
-    <%= f.submit "登録する", class: "btn btn-secondary center-block" %>
+  <div class="d-flex justify-content-center registration">
+    <%= f.submit "登録する", class: "btn btn-primary w-25 save col-xs-6 btn-lg" %>
   </div>
   <% end %>
 

@@ -1,15 +1,19 @@
 <div class="container">
-  <h2>-All post-</h2>
-    <% @posts.each do |post| %>
-    <div>
-
-      <p><%= post.player.name %></p>
-      <%= attachment_image_tag post.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-      <%= link_to post_path(post.id) do %>
-        <p><%= post.title %></p>
-      <% end %>
-      <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+  <h2 class="page-title">-All post-</h2>
+  <% @posts.order('updated_at DESC').each do |post| %>
+    <div class="all-post border-bottom d-flex justify-content-between">
+      <div class="post-player text-center">
+        <%= attachment_image_tag post.player, :player_image, fallback: "no_image.jpg", class: "icon-post" %><br>
+        <%= post.player.name %>
+      </div>
+      <div class="post-title">
+        <%= link_to post_path(post.id) do %>
+          <h4><%= post.title %></h3>
+        <% end %>
+      </div>
+      <div class="post-time text-right">
+        <span><%= post.created_at.strftime('%Y/%m/%d') %></span>
+      </div>
     </div>
-    <% end %>
-
+  <% end %>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>-<%= @player.name %>-</h2>
+  <h2 class="page-title">-<%= @player.name %>-</h2>
   <%= form_with model: @player, url: admin_player_path, method: :patch, local: true do |f| %>
   <p>選手ID<%= @player.id %></p>
   <div>

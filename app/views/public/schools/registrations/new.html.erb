@@ -1,21 +1,21 @@
 <div class="container">
-  <h2>-学校登録-</h2>
+  <h2 class="page-title registration">-学校登録-</h2>
   <%= form_with model: @school, url: school_registration_path, id: 'new_school', class: 'new_school', local: true do |f| %>
-    <%= render "schools/shared/error_messages", resource: resource %>
-  <table class="table">
+    <%= render "public/schools/shared/error_messages", resource: resource %>
+  <table class="table table-bordered registration">
     <tbody>
       <tr>
         <th>学校名</th>
         <td>
           <div class="field">
-            <%= f.text_field :high_school_name, autofocus: true, placeholder: '〇〇高校' %>
+            <%= f.text_field :high_school_name, :size=>"60", autofocus: true, placeholder: '〇〇高校' %>
           </div>
         </td>
       <tr>
         <th>監督名</th>
         <td>
           <div class="field">
-            <%= f.text_field :manager_name, placeholder: '藤浪 翔平' %>
+            <%= f.text_field :manager_name, :size=>"60", placeholder: '名字 名前' %>
           </div>
         </td>
       </tr>
@@ -23,7 +23,7 @@
         <th>所在地</th>
         <td>
           <div class="field">
-            <%= f.text_field :address, placeholder: '東京都文京区後楽園1-1-1' %>
+            <%= f.text_field :address, :size=>"60", placeholder: '東京都文京区後楽園1-1-1' %>
           </div>
         </td>
       </tr>
@@ -31,7 +31,7 @@
         <th>甲子園出場回数</th>
         <td>
           <div class="field">
-            春 <%= f.text_field :spring_koshien_times, placeholder: '0' %>　夏 <%= f.text_field :summer_koshien_times, placeholder: '0' %>
+            春 <%= f.text_field :spring_koshien_times, :size=>"3", placeholder: '0' %>　夏 <%= f.text_field :summer_koshien_times, :size=>"3", placeholder: '0' %>
           </div>
         </td>
       </tr>
@@ -47,7 +47,7 @@
         <th>e-mail</th>
         <td>
           <div class="field">
-            <%= f.text_field :email, placeholder: 'sample@example.com' %>
+            <%= f.text_field :email, :size=>"60", placeholder: 'sample@example.com' %>
           </div>
         </td>
       </tr>
@@ -57,9 +57,9 @@
           <div class="field">
             <%= f.label :password %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <em>(<%= @minimum_password_length %>文字以上の半角英数字)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'パスワード' %>
+            <%= f.password_field :password, :size=>"60", autocomplete: "new-password", placeholder: 'パスワード' %>
           </div>
         </td>
       </tr>
@@ -67,15 +67,14 @@
         <th>パスワード確認用</th>
         <td>
           <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '確認用' %>
+            <%= f.password_field :password_confirmation, :size=>"60", autocomplete: "new-password", placeholder: 'パスワード再入力' %>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="actions">
-    <%= f.submit "登録する", class: "btn btn-secondary center-block" %>
+  <div class="d-flex justify-content-center registration">
+    <%= f.submit "登録する", class: "btn btn-primary w-25 save col-xs-6 btn-lg" %>
   </div>
   <% end %>
 

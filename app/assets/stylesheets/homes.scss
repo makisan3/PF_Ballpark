@@ -2,9 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.back-img {
-  width: 100%;
-  height: 1000px;
-  background-image: image-url("ballpark1.jpeg");
+.home-content {
+  text-align: center;
+}
+
+.home-content p {
+  font-size: 1.125rem;
+  margin: 10px 0 42px;
+}
+
+// 見出し
+.toppage-title {
+  font-size: 5rem;
+  //font-family: 'Philosopher', serif;
+  //text-transform: uppercase;
+  font-weight: normal;
+}
+
+//ボタン
+.button {
+  border-radius: 5px;
+  padding: 18px 32px;
+  margin-top: 300px;
+}
+
+a.btn-top {
+  font-size: 1.5rem;
+  line-height: 60px;
+  padding: 0;
+}
+
+.btn-school {
+  margin-top: 100px;
+}
+
+.btn-top {
+  width: 20%;
+  height: 60px;
+}
+
+// 背景画像
+.big-bg {
   background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#home {
+  background-image: image-url("ballpark1.jpeg");
+  min-height: 100vh;
 }

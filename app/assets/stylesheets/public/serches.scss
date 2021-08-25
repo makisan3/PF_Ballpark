@@ -1,0 +1,29 @@
+// Place all the styles related to the common/serches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.upside {
+  display: flex;
+  justify-content: space-between;
+}
+
+.downside {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  margin-bottom: 50px;
+}
+
+.icon-search {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.result-name {
+  text-decoration: none;
+  color: #000000;
+}

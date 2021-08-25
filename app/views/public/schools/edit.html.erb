@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>-プロフィール編集-</h2>
+  <h2 class="page-title">-プロフィール編集-</h2>
   <%= form_with model: @school, url: school_path(current_school.id), method: :patch, local: true do |f| %>
   <%= attachment_image_tag @school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
   <%= f.attachment_field :high_school_image %>

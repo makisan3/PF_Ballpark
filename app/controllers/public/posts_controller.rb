@@ -8,17 +8,16 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.player_id = current_player.id
     @post.save
-    redirect_to posts_path
+    redirect_to posts_path(player_id: @post.player.id)
   end
 
   def index
-    @posts = Post.all
-    #@post = Post.find(params[:id])
+    @posts = Post.where(player_id: request.query_parameters[:player_id])
   end
 
   def show
     @post = Post.find(params[:id])
-    @player = Player.find(params[:id])
+    @player = Player.find(@post.player_id)
   end
 
   def edit

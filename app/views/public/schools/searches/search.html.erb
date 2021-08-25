@@ -1,22 +1,33 @@
 <div class="container">
   <%= flash[:alert] %>
-  <h2>-選手検索-</h2>
+  <h2 class="page-title">-選手検索-</h2>
   <%= form_tag(searches_result_path,:method => 'get', autocomplete: 'off' ) do %>
-    <div>
-      <p>選手名</p>
-      <%= text_field_tag :name %>
-      <p>学年</p>
-      <%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %>
-      <p>活動拠点</p>
-      <%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %>
+    <div class="search upside">
+      <div class="class">
+        <h5>選手名</h5>
+        <%= text_field_tag :name %>
+      </div>
+      <div class="class">
+        <h5>学年</h5>
+        <%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %>
+      </div>
+      <div class="class">
+        <h5>活動拠点</h5>
+        <%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %>
+      </div>
     </div>
-    <div>
-      <p>学校名</p>
-      <%= text_field_tag :school %>
-      <p>在籍チーム</p>
-      <%= text_field_tag :enrollment %>
+    <div class="search downside">
+      <div class="class">
+        <h5>学校名</h5>
+        <%= text_field_tag :school %>
+      </div>
+      <div class="class">
+        <h5>在籍チーム</h5>
+        <%= text_field_tag :enrollment %>
+      </div>
     </div>
-
-    <%= submit_tag '検索する', class: "btn btn-warning" %>
+    <div class="search d-flex justify-content-center">
+      <%= submit_tag '検索する', class: "btn btn-warning w-25 save col-xs-6 btn-lg" %>
+    </div>
   <% end %>
 </div>

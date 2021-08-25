@@ -1,0 +1,28 @@
+.mypage-post-all {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mypage-post-line {
+  line-height: 3rem;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 0.2px #ccc;
+}
+
+time {
+  padding-right: 120px;
+  padding-left: 40px;
+  font-size: 0.8em ;
+}
+
+.mypage-post-title {
+  min-width: 300px;
+  text-align: center;
+}
+
+.p-3 {
+    width: 100px;
+    text-align: right;
+}

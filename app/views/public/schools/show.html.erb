@@ -1,47 +1,68 @@
 <div class="container">
-  <h2>-Team page-</h2>
-  <h2><%= current_school.high_school_name %></h2>
-  <%= attachment_image_tag @school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+  <h2 class="page-title">-Team page-</h2>
 
-  <% if @school.id == current_school.id %>
-    <p><%= link_to "⚙️", edit_school_path(@school) %></p>
-  <% end %>
-
-  <table class="table">
-    <tbody>
-        <tr>
-            <td>学校名</td>
-            <td><%= current_school.high_school_name %></td>
-        </tr>
-        <tr>
-            <td>監督</td>
-            <td><%= current_school.manager_name %></td>
-        </tr>
-        <tr>
-            <td>所在地</td>
-            <td><%= current_school.address %></td>
-        </tr>
-        <tr>
-            <td>甲子園出場回数</td>
-            <td>春 | <%= current_school.spring_koshien_times %> 夏 | <%= current_school.summer_koshien_times %></td>
-        </tr>
-        <tr>
-            <td>寮</td>
-            <td><%= current_school.dormitory %></td>
-        </tr>
-    </tbody>
-  </table>
-  <h3>Pickup list</h3>
-  <% @like_players.each do |like| %>
-    <div>
-      <p><%= like.player.name %>
-         <%= like.player.school %>/<%= like.player.enrollment %>
-      </p>
+  <div class="card">
+    <div class="card-body">
+      <div class="top-school">
+        <%= attachment_image_tag @school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+        <h2 class="d-flex align-items-center mx-auto"><%= @school.high_school_name %></h2>
+      </div>
     </div>
-  <% end %>
-  <%= link_to school_likes_players_path(current_school.id) do %>
-    <h4>All Pickup</h4>
-  <% end %>
+  </div>
 
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Data
+          <% if school_signed_in? && @school.id == current_school.id %>
+            <%= link_to "⚙️", edit_school_path(@school) %>
+          <% end %>
+        </h4>
+        <table class="table">
+          <tbody>
+              <tr>
+                  <td>学校名</td>
+                  <td><%= @school.high_school_name %></td>
+              </tr>
+              <tr>
+                  <td>監督</td>
+                  <td><%= @school.manager_name %></td>
+              </tr>
+              <tr>
+                  <td>所在地</td>
+                  <td><%= @school.address %></td>
+              </tr>
+              <tr>
+                  <td>甲子園出場回数</td>
+                  <td>春 | <%= @school.spring_koshien_times %> 夏 | <%= @school.summer_koshien_times %></td>
+              </tr>
+              <tr>
+                  <td>寮</td>
+                  <td><%= @school.dormitory %></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Pickup list</h4>
+        <ul class="mypage-pickup-all">
+          <% @like_players.order('updated_at DESC').limit(3).each do |like| %>
+          <li class="mypage-pickup-list border-line">
+            <div class="mypage-like-name"><%= like.player.name %></div>
+            <div class="mypage-like-school"><%= like.player.school %>/<%= like.player.enrollment %></div>
+          </li>
+          <% end %>
+        </ul>
+        <% if school_signed_in? %>
+          <%= link_to school_likes_players_path(@school.id) do %>
+            <h4>All Pickup</h4>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 </div>

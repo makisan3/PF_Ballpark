@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>-プロフィール編集-</h2>
+  <h2 class="page-title">-プロフィール編集-</h2>
   <%= form_with model: @player, url: player_path(current_player.id), method: :patch, local: true do |f| %>
   <%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %>
   <%= f.attachment_field :player_image %>
@@ -35,7 +35,7 @@
 
   <div class="actions col-md-12">
     <%= link_to "保存せずに戻る", player_path, class: "glyphicon glyphicon-home btn btn-info" %>
-    <%= f.submit "編集内容を保存する",class: "btn btn-primary save col-xs-6" %>
+    <%= f.submit "編集内容を保存する", class: "btn btn-primary save col-xs-6" %>
     <%= link_to '退会する', unsubscribe_check_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
   </div>
 

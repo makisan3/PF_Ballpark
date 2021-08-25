@@ -1,18 +1,27 @@
-    <% if school_signed_in? %>
-    
-    <div class="player-search">
-      <% @entry_all.each do |entry| %>
-        <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-        <%= entry.player&.name %>
-      <% end %>
-    </div>
-    
-    <% else %>
-    <div class="school-search">
-      <% @entry_all.each do |entry| %>
-        <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
-        <%= entry.school&.high_school_name %>
-        <%#= link_to entry.player&.name, player_path(player.id) %>
-      <% end %>
-    </div>
-    <% end %>
+<div class="container">
+  <% if school_signed_in? %>
+
+      <div class="player-search">
+        <% @entry_all.each do |entry| %>
+          <%= link_to room_path(entry.room_id) do %>
+            <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+            <%= entry.player&.name %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% else %>
+
+      <div class="school-search">
+        <% @entry_all.each do |entry| %>
+          <%= link_to room_path(entry.room_id) do %>
+            <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+            <%= entry.school&.high_school_name %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+  <% end %>
+
+</div>

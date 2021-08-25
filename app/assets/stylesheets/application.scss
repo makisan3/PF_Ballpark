@@ -27,20 +27,9 @@
   //background-position: center;
 // }
 
-.table {
-  border: 1px solid #000;
-}
-
-.table th, .table td {
-  border-top: 0px !important;
-}
-
-.table th {
-  border-right: 1px solid #000;
-}
-
-h2 {
+.page-title {
   text-align: center;
+  margin-top: 15px;
 }
 
 .login-text {
@@ -60,3 +49,78 @@ h2 {
   height: 100px;  /* 縦横を同じ値にする */
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
+
+.icon-post {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.post-title h4 {
+  line-height: 124px;
+}
+
+.post-time {
+  height: 124px;
+  width: 100px;
+  position: relative;
+}
+
+.post-time span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.left-message{
+  text-align: left;
+}
+
+.right-message{
+  text-align: right;
+}
+
+.footerFixed{
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    position: relative;/* ←相対位置 */
+    padding-bottom: 60px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
+    /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+}
+
+footer{
+    position: absolute;/* ←絶対位置 */
+    bottom: 0; /*下に固定*/
+    width: 100%;
+    text-align: center;
+}
+
+.registration {
+  margin-top: 30px;
+}
+
+.session {
+  margin-top: 50px;
+}
+
+.btn-session {
+  margin-top: 150px;
+}
+
+.card {
+  margin-top: 30px;
+}
+
+.card-title {
+  margin-bottom: 1.5rem;
+}
+
+.post {
+  margin-top: 10px;
+}
+
+.all-post {
+  margin-bottom: 20px;
+}
+

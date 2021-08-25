@@ -1,71 +1,92 @@
 <div class="container">
-  <h2>-Player page-</h2>
-  <h2><%= @player.name %></h2>
-  <%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %>
+  <h2 class="page-title">-Player page-</h2>
 
-  <% if player_signed_in? && @player.id == current_player.id %>
-    <h3><%= link_to "⚙️", edit_player_path(@player) %></h3>
-  <% end %>
-
-  <% if player_signed_in? && @player.id == current_player.id %>
-  <% elsif current_school.already_liked?(@player) %>
-    <%= link_to '❤', player_like_path(player_id: @player.id), method: :delete %>
-  <% else %>
-    <%= link_to '🤍️', player_likes_path(player_id: @player.id), method: :post %>
-  <% end %>
-
-  <% if school_signed_in? %>
-    <% if current_school.already_liked?(@player) %>
-      <% if @isRoom %>
-        <%= link_to "📨", room_path(@roomId) %>
-      <% else %>
-        <%= form_for @room do |f| %>
-          <%= fields_for @entry do |e| %>
-            <%= e.hidden_field :room_id, value: params[:id] %>
-            <%= e.hidden_field :player_id, value: @player.id %>
-          <% end %>
-          <%= f.submit "📨test" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-
-
-  <table class="table">
-    <tbody>
-        <tr>
-            <td>名前</td>
-            <td><%= @player.name %></td>
-        </tr>
-        <tr>
-            <td>学年</td>
-            <td><%= @player.grade %></td>
-        </tr>
-        <tr>
-            <td>学校/在籍チーム</td>
-            <td><%= @player.school %>/<%= @player.enrollment %></td>
-        </tr>
-        <tr>
-            <td>拠点</td>
-            <td><%= @player.base %></td>
-        </tr>
-        <tr>
-            <td>PR</td>
-            <td><%= @player.player_pr %></td>
-        </tr>
-    </tbody>
-  </table>
-  <h3>Post</h3>
-  <% @posts.each do |post| %>
-    <div>
-      <p><%= post.created_at.strftime('%Y/%m/%d') %>
-          <%= post.title %>
-      </p>
+  <div class="card">
+    <div class="card-body">
+      <div class=" top-name">
+        <div class="d-flex justify-content-between">
+          <div class="p-2"><%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %></div>
+          <div class="p-2"><h2><%= @player.name %></h2></div>
+          <div class="p-3">
+            <% if player_signed_in? && @player.id == current_player.id %>
+              <% elsif current_school.already_liked?(@player) %>
+                <%= link_to '❤', player_like_path(player_id: @player.id), method: :delete %>
+              <% else %>
+                <%= link_to '🤍️', player_likes_path(player_id: @player.id), method: :post %>
+              <% end %>
+      
+              <% if school_signed_in? %>
+                <% if current_school.already_liked?(@player) %>
+                  <% if @isRoom %>
+                    <%= link_to "📨", room_path(@roomId), class: 'fas fa-envelope-open-text' %>
+                  <% else %>
+                    <%= form_for @room do |f| %>
+                      <%= fields_for @entry do |e| %>
+                        <%= e.hidden_field :room_id, value: params[:id] %>
+                        <%= e.hidden_field :player_id, value: @player.id %>
+                      <% end %>
+                      <%= f.submit "📨" %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <%= link_to posts_path do %>
-    <h4>All post</h4>
-  <% end %>
+  </div>
 
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Data
+          <% if player_signed_in? && @player.id == current_player.id %>
+            <%= link_to "⚙️", edit_player_path(@player) %>
+          <% end %>
+        </h4>
+        <table class="table">
+          <tbody>
+              <tr>
+                  <td>名前</td>
+                  <td><%= @player.name %></td>
+              </tr>
+              <tr>
+                  <td>学年</td>
+                  <td><%= @player.grade %></td>
+              </tr>
+              <tr>
+                  <td>学校/在籍チーム</td>
+                  <td><%= @player.school %>/<%= @player.enrollment %></td>
+              </tr>
+              <tr>
+                  <td>拠点</td>
+                  <td><%= @player.base %></td>
+              </tr>
+              <tr>
+                  <td>PR</td>
+                  <td><%= @player.player_pr %></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Post</h4>
+        <ul class="mypage-post-all">
+          <% @posts.order('updated_at DESC').limit(3).each do |post| %>
+          <li class="mypage-post-line border-line">
+            <time><%= post.created_at.strftime('%Y/%m/%d') %></time>
+            <div class="mypage-post-title"><%= post.title %></div>
+          </li>
+          <% end %>
+        </ul>
+        <%= link_to posts_path(player_id: params[:id]) do %>
+          <p>All post</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 </div>
