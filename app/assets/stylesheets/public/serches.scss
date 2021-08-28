@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* searches/search */
 .upside {
   display: flex;
   justify-content: space-between;
@@ -13,9 +14,21 @@
 }
 
 .search {
+  margin-top: 90px;
   margin-bottom: 50px;
 }
 
+.search-select {
+  font-size: 125%;
+}
+
+.search-base {
+  margin-right: 100px;
+  margin-left: 10px;
+  height: 50px;
+}
+
+/* searches/result */
 .icon-search {
   border-radius: 50%;
   width: 80px;
@@ -26,4 +39,17 @@
 .result-name {
   text-decoration: none;
   color: #000000;
+  font-size: 1.5rem;
+}
+
+.result-list {
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-player {
+  display: inline-block;
+	display: flex;
+  align-items: center;
 }

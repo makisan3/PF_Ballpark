@@ -1,4 +1,5 @@
 class Public::RoomsController < ApplicationController
+  
 
   def index
 
@@ -17,13 +18,15 @@ class Public::RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
-    if school_signed_in? && Entry.where(school_id: current_school.id,room_id: @room.id).present?
-      @messages = @room.messages
-      @message = Message.new
-      @entries = @room.entries
-      @entry_all = Entry.all
-    elsif Entry.where(player_id: current_player.id,room_id: @room.id).present?
+   
+    #if school_signed_in? && Entry.where(school_id: current_school.id,room_id: @room.id).present?
+      #@messages = @room.messages
+      #@message = Message.new
+      #@entries = @room.entries
+      #@entry_all = Entry.all
+   # elsif Entry.where(player_id: current_player.id,room_id: @room.id).present?
+    if school_signed_in? || player_signed_in?
+      @room = Room.find(params[:id])
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries

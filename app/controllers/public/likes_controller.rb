@@ -4,7 +4,7 @@ class Public::LikesController < ApplicationController
     @likes = Like.all
     @like = Like.new
   end
-  
+
   def create
     @like = current_school.likes.create(player_id: params[:player_id])
     redirect_back(fallback_location: root_path)

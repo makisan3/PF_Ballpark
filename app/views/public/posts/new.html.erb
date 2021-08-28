@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="page-title">-New post-</h2>
   <div class="center-block" >
-    <%= form_with model: @post, local:true do |f| %>
+    <%= form_with model: @post, local:true, html: {class: "col-md6 offset-md-3"} do |f| %>
       <div class="post title">
         <%= f.text_field :title, :size=>"67", placeholder: 'タイトル' %>
       </div>
@@ -13,7 +13,7 @@
         <%= f.attachment_field :image %>
       </div>
       <div class="post post-btn">
-        <%= f.submit '投稿する', class: "btn btn-warning w-50 save col-xs-6 btn-lg" %>
+        <%= f.submit '投稿する', class: "btn btn-warning w-100 save col-xs-6 btn-lg" %>
       </div>
     <% end %>
   </div>

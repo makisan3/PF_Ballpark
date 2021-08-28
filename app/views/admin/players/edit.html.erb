@@ -1,31 +1,42 @@
 <div class="container">
   <h2 class="page-title">-<%= @player.name %>-</h2>
   <%= form_with model: @player, url: admin_player_path, method: :patch, local: true do |f| %>
-  <p>選手ID<%= @player.id %></p>
-  <div>
-    <%= f.label "選手名" %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label "在籍校" %>
-    <%= f.text_field :school %>
-  </div>
-  <div>
-    <%= f.label "在籍チーム" %>
-    <%= f.text_field :enrollment %>
-  </div>
-  <div>
-    <%= f.label "学年" %>
-    <%= f.select :grade, options_for_select(Player.grades.keys, selected: @player.grade), {prompt: "選択してください"} %>
-  </div>
-  <div>
-    <%= f.label "活動拠点" %>
-    <%= f.select :base, options_for_select(Player.bases.keys, selected: @player.base), {prompt: "選択してください"} %>
-  </div>
-  <div>
-    <%= f.label "e-mail" %>
-    <%= f.text_field :email %>
-  </div>
+  <p>選手ID <%= @player.id %></p>
+  <table class="table table-bordered mt-3">
+    <tbody>
+      <tr>
+        <td>
+          <%= f.label "選手名" %>
+          <%= f.text_field :name %>
+        </td>
+        <td>
+          <%= f.label "e-mail" %>
+          <%= f.text_field :email %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label "在籍校" %>
+          <%= f.text_field :school %>
+        </td>
+        <td>
+          <%= f.label "在籍チーム" %>
+          <%= f.text_field :enrollment %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label "学年" %>
+          <%= f.select :grade, options_for_select(Player.grades.keys, selected: @player.grade), {prompt: "選択してください"} %>
+        </td>
+        <td>
+          <%= f.label "活動拠点" %>
+          <%= f.select :base, options_for_select(Player.bases.keys, selected: @player.base), {prompt: "選択してください"} %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
   <div class="form-group col-md-12">
     <%= f.label "選手ステータス", class: "col-md-4 control-label" %>
     <%= f.radio_button :player_status, false %>

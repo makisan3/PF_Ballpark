@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -32,7 +33,7 @@
 
               <% if player_signed_in? %>
                 <li class="header-name">
-                  <%= current_player.name %>でログイン🏟
+                  <%= current_player.name %>でログイン
                 </li>
                 <li class="nav"><%= link_to '選手マイページ', player_path(current_player.id), class: "nav-link navbar-light" %></li>
                 <li class="nav"><%= link_to '新規投稿', new_post_path, class: "nav-link navbar-light" %></li>
@@ -42,7 +43,7 @@
 
               <% if school_signed_in? %>
                 <li class="header-name">
-                  <%= current_school.high_school_name %>でログイン🏟
+                  <%= current_school.high_school_name %>でログイン
                 </li>
                 <li class="nav"><%= link_to '学校マイページ', school_path(current_school.id), class: "nav-link navbar-light" %></li>
                 <li class="nav"><%= link_to '選手検索', searches_path, class: "nav-link navbar-light" %></li>

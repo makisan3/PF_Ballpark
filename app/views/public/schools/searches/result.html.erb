@@ -3,26 +3,23 @@
     <% @players.each do |player| %>
       <ul class="list-group">
         <li class="list-group-item">
-          <div class="result-list">
-            <%= attachment_image_tag player, :player_image, fallback: "no_image.jpg", class: "icon-search" %>
-            <div class="">
-              <strong class="result-name"><%= link_to player.name, player_path(player.id) %></strong>
-            </div>
-            <div class="class">
-              <%= player.base %>/<%= player.grade %>
-            </div>
-            <div class="class">
+          <div class="result-list row">
+            <div class="result-player col-sm-9">
+              <%= attachment_image_tag player, :player_image, fallback: "no_image.jpg", class: "icon-search" %>
+              <strong><%= link_to player.name, player_path(player.id), class: "result-name ml-4 mr-4" %></strong>
+              <%= player.base %>/<%= player.grade %><br>
               <%= player.school %>/<%= player.enrollment %>
             </div>
-            <% if current_school.already_liked?(player) %>
-              <%= link_to '❤', player_like_path(player), method: :delete %>
-            <% else %>
-              <%= link_to '🤍️', player_likes_path(player_id: player.id), method: :post %>
-            <% end %>
+            <div class="result-option col-sm-3 text-right ">
+              <% if current_school.already_liked?(player) %>
+                <%= link_to '', player_like_path(player), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
+              <% else %>
+                <%= link_to '', player_likes_path(player_id: player.id), method: :postt, class: "far fa-heart fa-2x mr-3" %>
+              <% end %>
+            </div>
           </div>
         </li>
       </ul>
-    
     <% end %>
   </table>
 </div>

@@ -1,3 +1,16 @@
+/* schools/show */
+.school-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.school-option{
+  width: 100px;
+  text-align: right;
+}
+
+
 .mypage-pickup-all {
   list-style: none;
   padding-left: 0;
@@ -29,10 +42,8 @@
   justify-content: space-between;
 }
 
-.result-list {
-  display: inline-flex;
-}
-
-strong {
-  color: #000000;
+.pickup-link {
+  text-decoration: none;
+  color: #ffa500;
+  //font-size: ;
 }

@@ -1,3 +1,15 @@
+/* playrs/show */
+.player-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-option {
+  width: 100px;
+  text-align: right;
+}
+
 .mypage-post-all {
   list-style: none;
   padding-left: 0;
@@ -22,7 +34,8 @@ time {
   text-align: center;
 }
 
-.p-3 {
-    width: 100px;
-    text-align: right;
+.post-link {
+  text-decoration: none;
+  color: #ffa500;
+  //font-size: ;
 }

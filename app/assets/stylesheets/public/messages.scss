@@ -1,3 +1,152 @@
 // Place all the styles related to the common/messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* messages/show */
+.card {
+    border: 0;
+    border-radius: 0px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    -webkit-transition: .5s;
+    transition: .5s
+}
+
+.card-header {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    // justify-content: space-between;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(77, 82, 89, 0.07)
+}
+
+.card-header .card-title {
+    padding: 0;
+    border: none
+}
+
+h4.card-title {
+    font-size: 17px
+}
+
+.message-avatar {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #f5f6f7;
+    color: #8b95a5;
+    text-transform: uppercase
+    // margin-right: 10px;
+}
+
+
+.publisher {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #f9fafb
+}
+
+
+.publisher-input {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    border: none;
+    outline: none !important;
+    background-color: transparent
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: Roboto, sans-serif;
+    font-weight: 300
+}
+
+.publisher-btn {
+    background-color: transparent;
+    border: none;
+    color: #8b95a5;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: -moz-hidden-unscrollable;
+    -webkit-transition: .2s linear;
+    transition: .2s linear
+}
+
+.publisher-btn {
+    background-color: transparent;
+    border: none;
+    color: #cac7c7;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: -moz-hidden-unscrollable;
+    -webkit-transition: .2s linear;
+    transition: .2s linear
+}
+
+.text-info {
+    color: #48b0f7 !important
+}
+
+.message-name {
+  text-decoration: none;
+  color: #33160e;
+}
+
+.background-blue {
+    background-color: rgba(0,0,0,0.03);
+}
+
+.form-text-field{
+    outline: none;
+}
+
+.message-room {
+    width: 100%
+}
+
+.message-size {
+    display: inline-block;
+    max-width: 60%;
+}
+
+.message-sending {
+    display: flex;
+}
+
+.message-content-pair {
+    padding: 10px;
+    background-color: skyblue;
+    border-radius: 5px;
+    color: white;
+    text-align: left;
+}
+
+.message-content-own {
+    padding: 10px;
+    background-color: mintcream;
+    border-radius: 5px;
+    color: brack;
+    text-align: left;
+    margin-right: 5px
+}
+
+.message-time {
+    line-height: 40px;
+}

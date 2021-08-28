@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="page-title">-Note編集-</h2>
   <div class="center-block">
-    <%= form_with model: @post, url: post_path, method: :patch, local: true do |f| %>
+    <%= form_with model: @post, url: post_path, method: :patch, local: true, html: {class: "col-md6 offset-md-3"} do |f| %>
       <div class="post title">
         <%= f.text_field :title, :size=>"67" %>
       </div>
@@ -13,9 +13,9 @@
         <%= f.attachment_field :image %>
       </div>
       <% if @post.player == current_player %>
-      <div class="post post-btn">
-        <%= link_to "保存せずに戻る", post_path(@post.id), class: "glyphicon glyphicon-home btn btn-info" %>
-        <%= f.submit "編集内容を保存する",class: "btn btn-primary save col-xs-6" %>
+      <div class="post post-edit-btn">
+        <%= link_to "保存せずに戻る", post_path(@post.id), class: "glyphicon glyphicon-home btn btn-info mr-3" %>
+        <%= f.submit "編集内容を保存する",class: "btn btn-primary save col-xs-6  mr-3" %>
         <%= link_to '削除する', post_path(@post), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
       </div>
       <% end %>

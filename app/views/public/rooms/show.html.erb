@@ -1,82 +1,108 @@
 <div class="container">
   <h2 class="page-title">-Message-</h2>
 
-  <div class="message">
-   <%#= render 'userlist', locals: { entry_all: @entry_all } %>
+  <div class="page-content page-container" id="page-content">
+      <div class="row container d-flex justify-content-center">
+          <div class="col-md-10">
+              <div class="card card-bordered">
+                  <div class="card-header d-flex align-items-center mb-3">
+                      <h4 class="card-title">
+                        <!--相手名の表示-->
+                        <% if school_signed_in? %>
+                          <div class="message-name">
+                            <% @entries.each do |entry| %>
+                              <%#= entry.player.name %>
+                              <%= link_to entry.player&.name, player_path(entry.player.id) %>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <div class="message-name">
+                            <% @entries.each do |entry| %>
+                              <%#= entry.player.name %>
+                              <%= link_to entry.school&.high_school_name, school_path(entry.school.id) %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </h4>
+                  </div>
+                  <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
+                    <!--学校側から見たメッセージ画面-->
+                    <% if school_signed_in? %>
+                      <% @messages.each do |m| %>
+                        <% if m.player_id %>
+                          <!--選手のメッセージ-->
+                          <div classe="message-room">
+                            <div class="message-size">
+                              <div class="message-sending">
+                            <!--<div class="message-avatar  ml-2"><%#= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg" %></div>-->
+                                <div style="margin-right: 10px;"><%= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
+                                <p class="message-content-pair"><%= m.content %></p>
+                                <p class="message-time ml-2"><%= m.created_at.strftime("%H:%M")%></p>
+                              </div>
+                            </div>
+                          </div>
+                        <% else %>
+                          <!--学校のメッセージ-->
+                          <div class="message-room text-right">
+                            <div class="message-size">
+                              <div class="message-sending">
+                                <p class="message-time mr-2"><%= m.created_at.strftime("%H:%M")%></p>
+                                <p class="message-content-own"><%= m.content %></p>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <!--選手側から見たメッセージ画面-->
+                    <% else %>
+                      <% @messages.each do |m| %>
+                        <% if m.school_id %>
+                          <!--学校のメッセージ-->
+                          <div classe="message-room">
+                            <div class="message-size">
+                              <div class="message-sending">
+                            <!--<div class="message-avatar  ml-2"><%#= attachment_image_tag m.school, :high_school_image, fallback: "no_image.jpg" %></div>-->
+                                <div style="margin-right: 10px;"><%= attachment_image_tag m.school, :high_school_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
+                                <p class="message-content-pair"><%= m.content %></p>
+                                <p class="message-time ml-2"><%= m.created_at.strftime("%H:%M")%></p>
+                              </div>
+                            </div>
+                          </div>
+                        <% else %>
+                          <!--選手のメッセージ-->
+                          <div class="message-room text-right">
+                            <div class="message-size">
+                              <div class="message-sending">
+                                <p class="message-time mr-2"><%= m.created_at.strftime("%H:%M")%></p>
+                                <p class="message-content-own"><%= m.content %></p>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
 
-    <div class="message-box">
-      <% if school_signed_in? %>
-      <div class="message-pair">
-      <% @entries.each do |entry| %>
-        <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-        <%#= entry.player.name %>
-        <%= link_to entry.player&.name, player_path(entry.player.id) %>
-      <% end %>
-      </div>
-      <% else %>
-      <div class="message-pair">
-      <% @entries.each do |entry| %>
-        <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
-        <%#= entry.player.name %>
-        <%= link_to entry.school&.high_school_name, school_path(entry.school.id) %>
-      <% end %>
-      </div>
-      <% end %>
+                    <!--スクロール-->
+                    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                      <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">
+                      <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
+                    </div>
 
-      <div class="chat">
-      <% if school_signed_in? %>
-        <% if @messages.present? %>
-          <% @messages.each do |m| %>
-          <!--メッセージがSchoolによるものだったら-->
-            <% if m.school_id %>
-              <!--メッセージを右に寄せる-->
-              <div class="right-message">
-                <%= m.content %><br>
-                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
-              </div>
-          <!--メッセージがPlayerによるものだったら-->
-            <% else %>
-              <!--メッセージを左に寄せる-->
-              <div class="left-message">
-                <%= m.content %><br>
-                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% elsif player_signed_in? %>
-        <% if @messages.present? %>
-          <% @messages.each do |m| %>
-          <!--メッセージがPlayerによるものだったら-->
-            <% if m.player_id %>
-              <!--メッセージを右に寄せる-->
-              <div class="right-message">
-                <%= m.content %><br>
-                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
-              </div>
-          <!--メッセージがSchoolによるものだったら-->
-            <% else %>
-              <!--メッセージを左に寄せる-->
-              <div class="left-message">
-                <%= m.content %><br>
-                <%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-      </div>
+                </div>
+                <!--メッセージ作成＆送信-->
+                <%= form_with(model: @message, url: room_messages_path(@room.id)) do |f| %>
+                  <div class="publisher bt-1 border-light">
+                    <%= f.text_field :content, placeholder: "メッセージを作成" , class:"publisher-input" %>
+                    <%= f.hidden_field :room_id, value: @room.id %>
+                    <%= f.button :type => "submit", class: 'publisher-btn text-info' do %>
+                      <i class="fa fa-paper-plane"></i>
+                    <% end %>
+                  </div>
+                <% end %>
 
-      <div class="sending">
-        <%= form_with(model: @message, url: room_messages_path(@room.id)) do |f| %>
-          <%= f.text_field :content, placeholder: "メッセージを作成" , size: 70, class:"form-text-field" %>
-            <%= f.hidden_field :room_id, value: @room.id %>
-            <%= f.submit "送信",class: 'form-submit'%>
-        <% end %>
-      </div>
-
+              </div>
+          </div>
     </div>
-
-  </div>
-
 </div>

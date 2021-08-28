@@ -3,34 +3,34 @@
 
   <div class="card">
     <div class="card-body">
-      <div class=" top-name">
-        <div class="d-flex justify-content-between">
-          <div class="p-2"><%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %></div>
-          <div class="p-2"><h2><%= @player.name %></h2></div>
-          <div class="p-3">
-            <% if player_signed_in? && @player.id == current_player.id %>
-              <% elsif current_school.already_liked?(@player) %>
-                <%= link_to '❤', player_like_path(player_id: @player.id), method: :delete %>
+      <div class="player-info d-flex justify-content-between">
+        <div class="player-image"><%= attachment_image_tag @player, :player_image, fallback: "no_image.jpg", class: "icon" %></div>
+        <div class="player-name"><h2><%= @player.name %></h2></div>
+        <div class="player-option">
+          <% if player_signed_in? && @player.id == current_player.id %>
+          <% elsif current_school.already_liked?(@player) %>
+            <%= link_to '', player_like_path(player_id: @player.id), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
+          <% else %>
+            <%= link_to '️', player_likes_path(player_id: @player.id), method: :post, class: "far fa-heart fa-2x mr-3" %>
+          <% end %>
+
+          <% if school_signed_in? %>
+            <% if current_school.already_liked?(@player) %>
+              <% if @isRoom %>
+                <%= link_to "", room_path(@roomId), class: 'fas fa-envelope-open-text fa-2x' %>
               <% else %>
-                <%= link_to '🤍️', player_likes_path(player_id: @player.id), method: :post %>
-              <% end %>
-      
-              <% if school_signed_in? %>
-                <% if current_school.already_liked?(@player) %>
-                  <% if @isRoom %>
-                    <%= link_to "📨", room_path(@roomId), class: 'fas fa-envelope-open-text' %>
-                  <% else %>
-                    <%= form_for @room do |f| %>
-                      <%= fields_for @entry do |e| %>
-                        <%= e.hidden_field :room_id, value: params[:id] %>
-                        <%= e.hidden_field :player_id, value: @player.id %>
-                      <% end %>
-                      <%= f.submit "📨" %>
-                    <% end %>
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :room_id, value: params[:id] %>
+                    <%= e.hidden_field :player_id, value: @player.id %>
                   <% end %>
+                  <%= f.submit "📨" %>
                 <% end %>
               <% end %>
-          </div>
+            <% end %>
+          <% else %>
+            <%= link_to "", rooms_path, class: 'fas fa-envelope-open-text fa-2x mr-3' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
       <div class="card-body text-center">
         <h4 class="card-title">Data
           <% if player_signed_in? && @player.id == current_player.id %>
-            <%= link_to "⚙️", edit_player_path(@player) %>
+            <%= link_to "️", edit_player_path(@player), class: "fas fa-cog" %>
           <% end %>
         </h4>
         <table class="table">
@@ -64,7 +64,7 @@
               </tr>
               <tr>
                   <td>PR</td>
-                  <td><%= @player.player_pr %></td>
+                  <td><%= simple_format(@player.player_pr) %></td>
               </tr>
           </tbody>
         </table>
@@ -83,7 +83,7 @@
           <% end %>
         </ul>
         <%= link_to posts_path(player_id: params[:id]) do %>
-          <p>All post</p>
+          <p class="post-link">All post</p>
         <% end %>
       </div>
     </div>

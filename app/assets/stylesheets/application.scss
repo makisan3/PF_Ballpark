@@ -29,7 +29,7 @@
 
 .page-title {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .login-text {
@@ -59,18 +59,6 @@
 
 .post-title h4 {
   line-height: 124px;
-}
-
-.post-time {
-  height: 124px;
-  width: 100px;
-  position: relative;
-}
-
-.post-time span {
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 
 .left-message{
@@ -120,7 +108,30 @@ footer{
   margin-top: 10px;
 }
 
-.all-post {
-  margin-bottom: 20px;
+
+/* _unsubscribe */
+.last-text {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: large;
 }
 
+/* fontawsome色指定 */
+.fa-heart {
+  color: orangered;
+}
+
+.fa-heart:hover {
+  color: orangered;
+}
+
+.fa-envelope-open-text {
+  color: royalblue;
+}
+
+.fa-cog {
+  color: slategray;
+}

@@ -17,11 +17,11 @@ class Public::MessagesController < ApplicationController
       redirect_to "/rooms/#{@message.room_id}"
     end
     #メッセージがschollによるものだったらis_school=true,playerによるものだったらis_school=false
-    if school_signed_in?
-      @message.is_school = true
-    elsif player_signed_in?
-      @message.is_school = false
-    end
+    #if school_signed_in?
+      #@message.is_school = true
+    #elsif player_signed_in?
+      #@message.is_school = false
+    #end
   end
 
 end

@@ -1,3 +1,72 @@
 // Place all the styles related to the players/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* post/index */
+.all-post {
+  margin-bottom: 10px;
+}
+
+.post-player {
+  position: relative;
+  height: 150px;
+  width: 100px;
+}
+
+.post-player-index {
+  position: absolute;
+  bottom: 0;
+}
+
+.post-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-title-link {
+  text-decoration: none;
+  color: lightslategray;
+}
+
+.post-title-link:hover {
+  color: #000000;
+}
+
+.post-time{
+  position: relative;
+  height: 150px;
+  width: 100px;
+}
+
+.post-time span{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* post/new */
+.post-btn {
+  width: 550px;
+}
+
+/* post/edit */
+.post-edit-btn {
+  margin-right: 10px;
+}
+
+/* post/show */
+.post-show-edit {
+  display: inline-block;
+  text-align: right;
+}
+
+.post-show-name {
+  text-decoration: none;
+  color: lightslategray;
+}
+
+.post-show-name:hover {
+  color: #000000;
+}

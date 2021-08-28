@@ -36,7 +36,7 @@ class Public::PlayersController < ApplicationController
 
   def update
     @player = Player.find(params[:id])
-    if @player.update(member_params)
+    if @player.update(player_params)
       flash[:success] = "登録情報を変更しました"
       redirect_to player_path(current_player.id)
     else
@@ -62,7 +62,7 @@ class Public::PlayersController < ApplicationController
 
   private
 
-  def member_params
+  def player_params
     params.require(:player).permit(:name, :school, :enrollment, :grade, :base, :player_image, :player_pr)
   end
 

@@ -1,3 +1,33 @@
 // Place all the styles related to the likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* likes/like */
+.like {
+  margin-bottom: 50px;
+}
+
+.icon-like {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.like-name {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.5rem;
+}
+
+.like-list {
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+
+.like-player {
+  display: inline-block;
+	display: flex;
+  align-items: center;
+}

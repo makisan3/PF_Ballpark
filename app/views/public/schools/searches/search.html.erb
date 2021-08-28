@@ -1,33 +1,35 @@
 <div class="container">
   <%= flash[:alert] %>
   <h2 class="page-title">-選手検索-</h2>
-  <%= form_tag(searches_result_path,:method => 'get', autocomplete: 'off' ) do %>
-    <div class="search upside">
-      <div class="class">
-        <h5>選手名</h5>
-        <%= text_field_tag :name %>
+  <div class="player-search">
+    <%= form_tag(searches_result_path,:method => 'get', autocomplete: 'off' ) do %>
+      <div class="search upside">
+        <div class="search-name ml-5">
+          <h5>選手名</h5>
+          <%= text_field_tag :name, "", {size:"30"} %>
+        </div>
+        <div class="search-grade">
+          <h5>学年</h5>
+          <div class="search-select"><%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %></div>
+        </div>
+        <div class="search-base">
+          <h5>活動拠点</h5>
+          <div class="search-select"><%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %></div>
+        </div>
       </div>
-      <div class="class">
-        <h5>学年</h5>
-        <%= select_tag :grade, options_for_select(Player.grades), {prompt: "選択してください"} %>
+      <div class="search downside">
+        <div class="search-school">
+          <h5>学校名</h5>
+          <%= text_field_tag :school, "", {size:"50"} %>
+        </div>
+        <div class="search-enrollment">
+          <h5>在籍チーム</h5>
+          <%= text_field_tag :enrollment, "", {size:"50"} %>
+        </div>
       </div>
-      <div class="class">
-        <h5>活動拠点</h5>
-        <%= select_tag :base, options_for_select(Player.bases), {prompt: "選択してください"} %>
+      <div class="search d-flex justify-content-center">
+        <%= submit_tag '検索する', class: "btn btn-warning w-25 save col-xs-6 btn-lg" %>
       </div>
-    </div>
-    <div class="search downside">
-      <div class="class">
-        <h5>学校名</h5>
-        <%= text_field_tag :school %>
-      </div>
-      <div class="class">
-        <h5>在籍チーム</h5>
-        <%= text_field_tag :enrollment %>
-      </div>
-    </div>
-    <div class="search d-flex justify-content-center">
-      <%= submit_tag '検索する', class: "btn btn-warning w-25 save col-xs-6 btn-lg" %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
