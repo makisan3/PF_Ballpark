@@ -4,14 +4,14 @@
     <% @entry_all.each do |entry| %>
     <ul class="list-group">
       <li class="list-group-item">
-        <div class="like-list row">
-          <div class="like-player col-sm-9">
-            <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-            <strong><%= link_to entry.player&.name, room_path(entry.room_id), class: "result-name ml-4 mr-4" %></strong>
+        <div class="message-list row">
+          <div class="message-pair col-sm-9">
+            <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon-message" %>
+            <strong><%= link_to entry.player&.name, room_path(entry.room_id), class: "message-name ml-4 mr-4" %></strong>
             <%= entry.player.base %>/<%= entry.player.grade %><br>
             <%= entry.player.school %>/<%= entry.player.enrollment %>
           </div>
-          <div class="like-option col-sm-3 text-right ">
+          <div class="message-option col-sm-3 text-right ">
             <% if current_school.already_liked?(entry.player) %>
               <%= link_to '', player_like_path(player_id: entry.player.id), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
             <% else %>
@@ -26,15 +26,14 @@
     <% @entry_all.each do |entry| %>
     <ul class="list-group">
       <li class="list-group-item">
-        <div class="like-list row">
-          <div class="like-player col-sm-9">
-          <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
-          <strong><%= link_to entry.school&.high_school_name, room_path(entry.room_id), class: "result-name ml-4 mr-4" %></strong>
+        <div class="message-list row">
+          <div class="message-pair col-sm-9">
+          <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon-message" %>
+          <strong><%= link_to entry.school&.high_school_name, room_path(entry.room_id), class: "message-name ml-4 mr-4" %></strong>
           監督名 / <%= entry.school.manager_name %><br>
           所在地 / <%= entry.school.address %>
         </div>
-        <div class="like-option col-sm-3 text-right ">
-
+        <div class="message-option col-sm-3 text-right ">
         </div>
       </div>
       </li>

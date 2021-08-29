@@ -6,7 +6,7 @@
         <div class="like-list row">
           <div class="like-player col-sm-9">
             <%= attachment_image_tag like.player, :player_image, fallback: "no_image.jpg", class: "icon-like" %>
-            <strong><%= link_to like.player.name, player_path(like.player.id), class: "result-name ml-4 mr-4" %></strong>
+            <strong><%= link_to like.player.name, player_path(like.player.id), class: "like-name ml-4 mr-4" %></strong>
             <%= like.player.base %>/<%= like.player.grade %><br>
             <%= like.player.school %>/<%= like.player.enrollment %>
           </div>
