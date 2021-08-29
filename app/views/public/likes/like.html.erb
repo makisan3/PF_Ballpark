@@ -1,26 +1,24 @@
 <div class="container">
   <h2 class="page-title like">-Pickup list-</h2>
-    <% @likes.each do |like| %>
-    <ul class="list-group">
-        <li class="list-group-item">
-          <div class="like-list row">
-            <div class="like-player col-sm-9">
-              <%= attachment_image_tag like.player, :player_image, fallback: "no_image.jpg", class: "icon-like" %>
-              <strong><%= link_to like.player.name, player_path(like.player.id), class: "result-name ml-4 mr-4" %></strong>
-              <%= like.player.base %>/<%= like.player.grade %><br>
-              <%= like.player.school %>/<%= like.player.enrollment %>
-            </div>
-            <div class="like-option col-sm-3 text-right ">
-              <% if current_school.already_liked?(like.player) %>
-                <%= link_to '', player_like_path(player_id: like.player.id), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
-              <% else %>
-                <%= link_to '', player_likes_path(player_id: like.player.id), method: :postt, class: "far fa-heart fa-2x mr-3" %>
-              <% end %>
-            </div>
+  <% @likes.each do |like| %>
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="like-list row">
+          <div class="like-player col-sm-9">
+            <%= attachment_image_tag like.player, :player_image, fallback: "no_image.jpg", class: "icon-like" %>
+            <strong><%= link_to like.player.name, player_path(like.player.id), class: "result-name ml-4 mr-4" %></strong>
+            <%= like.player.base %>/<%= like.player.grade %><br>
+            <%= like.player.school %>/<%= like.player.enrollment %>
           </div>
-        </li>
-      </ul>
-    
-    <% end %>
-  </table>
+          <div class="like-option col-sm-3 text-right ">
+            <% if current_school.already_liked?(like.player) %>
+              <%= link_to '', player_like_path(player_id: like.player.id), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
+            <% else %>
+              <%= link_to '', player_likes_path(player_id: like.player.id), method: :postt, class: "far fa-heart fa-2x mr-3" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  <% end %>
 </div>

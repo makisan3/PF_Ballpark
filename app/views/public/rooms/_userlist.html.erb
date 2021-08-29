@@ -1,27 +1,45 @@
 <div class="container">
+  <h2 class="page-title like">-Message list-</h2>
   <% if school_signed_in? %>
-
-      <div class="player-search">
-        <% @entry_all.each do |entry| %>
-          <%= link_to room_path(entry.room_id) do %>
+    <% @entry_all.each do |entry| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="like-list row">
+          <div class="like-player col-sm-9">
             <%= attachment_image_tag entry.player, :player_image, fallback: "no_image.jpg", class: "icon" %>
-            <%= entry.player&.name %>
-          <% end %>
-        <% end %>
+            <strong><%= link_to entry.player&.name, room_path(entry.room_id), class: "result-name ml-4 mr-4" %></strong>
+            <%= entry.player.base %>/<%= entry.player.grade %><br>
+            <%= entry.player.school %>/<%= entry.player.enrollment %>
+          </div>
+          <div class="like-option col-sm-3 text-right ">
+            <% if current_school.already_liked?(entry.player) %>
+              <%= link_to '', player_like_path(player_id: entry.player.id), method: :delete, class: "fas fa-heart fa-2x mr-3" %>
+            <% else %>
+              <%= link_to '', player_likes_path(player_id: entry.player.id), method: :postt, class: "far fa-heart fa-2x mr-3" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <% end %>
+  <% else %>
+    <% @entry_all.each do |entry| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="like-list row">
+          <div class="like-player col-sm-9">
+          <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
+          <strong><%= link_to entry.school&.high_school_name, room_path(entry.room_id), class: "result-name ml-4 mr-4" %></strong>
+          監督名 / <%= entry.school.manager_name %><br>
+          所在地 / <%= entry.school.address %>
+        </div>
+        <div class="like-option col-sm-3 text-right ">
+
+        </div>
       </div>
-
-      <% else %>
-
-      <div class="school-search">
-        <% @entry_all.each do |entry| %>
-          <%= link_to room_path(entry.room_id) do %>
-            <%= attachment_image_tag entry.school, :high_school_image, fallback: "no_image.jpg", class: "icon" %>
-            <%= entry.school&.high_school_name %>
-          <% end %>
-        <% end %>
-      </div>
-
-
+      </li>
+    </ul>
+    <% end %>
   <% end %>
 
 </div>

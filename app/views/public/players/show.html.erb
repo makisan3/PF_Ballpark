@@ -24,10 +24,13 @@
                     <%= e.hidden_field :room_id, value: params[:id] %>
                     <%= e.hidden_field :player_id, value: @player.id %>
                   <% end %>
-                  <%= f.submit "📨" %>
+                  <%= f.button :type => "submit" do %>
+                    <div class="far fa-envelope fa-2x"></div>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
+          <!--選手ログイン時に表示するメッセージ一覧へ遷移するリンク-->
           <% else %>
             <%= link_to "", rooms_path, class: 'fas fa-envelope-open-text fa-2x mr-3' %>
           <% end %>
@@ -73,7 +76,7 @@
 
     <div class="card">
       <div class="card-body text-center">
-        <h4 class="card-title">Post</h4>
+        <h4 class="card-title">Note</h4>
         <ul class="mypage-post-all">
           <% @posts.order('updated_at DESC').limit(3).each do |post| %>
           <li class="mypage-post-line border-line">
@@ -83,7 +86,7 @@
           <% end %>
         </ul>
         <%= link_to posts_path(player_id: params[:id]) do %>
-          <p class="post-link">All post</p>
+          <p class="post-link">All note</p>
         <% end %>
       </div>
     </div>

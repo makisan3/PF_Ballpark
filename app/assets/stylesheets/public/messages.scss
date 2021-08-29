@@ -17,7 +17,6 @@
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: justify;
-    // justify-content: space-between;
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
@@ -46,7 +45,6 @@ h4.card-title {
     background-color: #f5f6f7;
     color: #8b95a5;
     text-transform: uppercase
-    // margin-right: 10px;
 }
 
 
@@ -107,6 +105,11 @@ textarea {
 .message-name {
   text-decoration: none;
   color: #33160e;
+}
+
+.message-name-color {
+    color: #000000;
+    font-size: 1.25rem;
 }
 
 .background-blue {

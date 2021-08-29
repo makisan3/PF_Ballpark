@@ -9,6 +9,8 @@
         <div class="school-option">
           <% if school_signed_in? %>
             <%= link_to "", rooms_path, class: 'fas fa-envelope-open-text fa-2x mr-3' %>
+          <% elsif @isRoom %>
+            <%= link_to "", room_path(@roomId), class: 'fas fa-envelope-open-text fa-2x mr-3' %>
           <% end %>
         </div>
       </div>
@@ -54,7 +56,7 @@
       <div class="card-body text-center">
         <h4 class="card-title">Pickup list</h4>
         <ul class="mypage-pickup-all">
-          <% @like_players.order('updated_at DESC').limit(3).each do |like| %>
+          <% @like_players.order('updated_at DESC').limit(5).each do |like| %>
           <li class="mypage-pickup-list border-line">
             <div class="mypage-like-name"><%= like.player.name %></div>
             <div class="mypage-like-school"><%= like.player.school %>/<%= like.player.enrollment %></div>
@@ -62,7 +64,8 @@
           <% end %>
         </ul>
         <% if school_signed_in? %>
-          <%= link_to school_likes_players_path(@school.id) do %>
+          <%#= link_to school_likes_players_path(@school.id) do %>
+          <%= link_to school_likes_players_path(school_id: params[:id]) do %>
             <p class="pickup-link">All Pickup</p>
           <% end %>
         <% end %>

@@ -1,6 +1,6 @@
 <div class="container">
-  <h2 class="page-title">-All post-</h2>
-  <% @posts.order('updated_at DESC').each do |post| %>
+  <h2 class="page-title">-All note-</h2>
+  <% @posts.order('created_at DESC').each do |post| %>
     <div class="all-post border-bottom d-flex justify-content-between">
       <div class="post-player">
         <div class="post-player-index">

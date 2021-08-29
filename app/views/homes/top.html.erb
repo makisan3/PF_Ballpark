@@ -1,15 +1,20 @@
 <div id="home" class="big-bg">
   <div class="home-content wrapper">
-    <h1 class="top-page-title text-light">Ballpark</h1>
-    <p>Ballparkはオンライン上でアピールとスカウトを完結させるサイトです</p>
+    <h1 class="top-page-title text-light pt-3">-Ballpark-</h1>
+    <p class="text-light mt-3">
+      Ballparkはオンライン上で球児と進学先を繋ぐWebアプリです<br>
+      選手は日々の記録を残しアピールを<br>
+      学校は全国に眠る選手へスカウトを<br>
+      発信と発掘で野球界を盛り上げましょう
+    </p>
     <div class="button">
       <div class="button-school mb-5">
-        <%= link_to '学校新規登録', new_school_registration_path, class: "mr-3 btn-top glyphicon glyphicon-home btn btn-info" %>
-        <%= link_to '学校ログイン', new_school_session_path, class: "ml-3 btn-top btn-primary save col-xs-6 btn" %>
+        <%= link_to '学校新規登録', new_school_registration_path, class: "mr-3 btn-top border_spread_btn text-light" %>
+        <%= link_to '学校ログイン', new_school_session_path, class: "ml-3 btn-top border_spread_btn text-light" %>
       </div>
       <div class="button-player">
         <%= link_to '選手新規登録', new_player_registration_path, class: "mr-3 btn-top border_spread_btn text-light" %>
-        <%= link_to '選手ログイン', new_player_session_path, class: "ml-3 btn-top border_bottom_btn text-light col-xs-6" %>
+        <%= link_to '選手ログイン', new_player_session_path, class: "ml-3 btn-top border_spread_btn text-light" %>
       </div>
     </div>
   </div>

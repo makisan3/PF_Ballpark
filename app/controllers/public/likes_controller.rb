@@ -1,7 +1,7 @@
 class Public::LikesController < ApplicationController
 
   def like
-    @likes = Like.all
+    @likes = Like.where(school_id: params[:school_id])
     @like = Like.new
   end
 

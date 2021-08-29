@@ -6,20 +6,20 @@
           <div class="col-md-10">
               <div class="card card-bordered">
                   <div class="card-header d-flex align-items-center mb-3">
-                      <h4 class="card-title">
+                      <h4 class="card-title m-auto">
                         <!--相手名の表示-->
                         <% if school_signed_in? %>
                           <div class="message-name">
                             <% @entries.each do |entry| %>
                               <%#= entry.player.name %>
-                              <%= link_to entry.player&.name, player_path(entry.player.id) %>
+                              <%= link_to entry.player&.name, player_path(entry.player.id), class: "message-name-color" %>
                             <% end %>
                           </div>
                         <% else %>
                           <div class="message-name">
                             <% @entries.each do |entry| %>
                               <%#= entry.player.name %>
-                              <%= link_to entry.school&.high_school_name, school_path(entry.school.id) %>
+                              <%= link_to entry.school&.high_school_name, school_path(entry.school.id), class: "message-name-color" %>
                             <% end %>
                           </div>
                         <% end %>
@@ -34,8 +34,8 @@
                           <div classe="message-room">
                             <div class="message-size">
                               <div class="message-sending">
-                            <!--<div class="message-avatar  ml-2"><%#= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg" %></div>-->
-                                <div style="margin-right: 10px;"><%= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
+                            <div class="ml-2"><%= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
+                                <!--<div style="margin-right: 10px;"><%#= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>-->
                                 <p class="message-content-pair"><%= m.content %></p>
                                 <p class="message-time ml-2"><%= m.created_at.strftime("%H:%M")%></p>
                               </div>
@@ -94,7 +94,7 @@
                 <!--メッセージ作成＆送信-->
                 <%= form_with(model: @message, url: room_messages_path(@room.id)) do |f| %>
                   <div class="publisher bt-1 border-light">
-                    <%= f.text_field :content, placeholder: "メッセージを作成" , class:"publisher-input" %>
+                    <%= f.text_field :content, placeholder: "メッセージを作成" , class:"publisher-input", autocomplete: 'off' %>
                     <%= f.hidden_field :room_id, value: @room.id %>
                     <%= f.button :type => "submit", class: 'publisher-btn text-info' do %>
                       <i class="fa fa-paper-plane"></i>
