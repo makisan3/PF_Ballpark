@@ -11,14 +11,12 @@
                         <% if school_signed_in? %>
                           <div class="message-name">
                             <% @entries.each do |entry| %>
-                              <%#= entry.player.name %>
                               <%= link_to entry.player&.name, player_path(entry.player.id), class: "message-name-color" %>
                             <% end %>
                           </div>
                         <% else %>
                           <div class="message-name">
                             <% @entries.each do |entry| %>
-                              <%#= entry.player.name %>
                               <%= link_to entry.school&.high_school_name, school_path(entry.school.id), class: "message-name-color" %>
                             <% end %>
                           </div>
@@ -34,8 +32,7 @@
                           <div classe="message-room">
                             <div class="message-size">
                               <div class="message-sending">
-                            <div class="ml-2"><%= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
-                                <!--<div style="margin-right: 10px;"><%#= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>-->
+                            <div class="ml-2"><%= attachment_image_tag m.player, :player_image, fallback: "no_image.jpg", class: "message-avatar mr-2" %></div>
                                 <p class="message-content-pair"><%= m.content %></p>
                                 <p class="message-time ml-2"><%= m.created_at.strftime("%H:%M")%></p>
                               </div>
@@ -61,7 +58,6 @@
                           <div classe="message-room">
                             <div class="message-size">
                               <div class="message-sending">
-                            <!--<div class="message-avatar  ml-2"><%#= attachment_image_tag m.school, :high_school_image, fallback: "no_image.jpg" %></div>-->
                                 <div style="margin-right: 10px;"><%= attachment_image_tag m.school, :high_school_image, fallback: "no_image.jpg", class: "message-avatar ml-2" %></div>
                                 <p class="message-content-pair"><%= m.content %></p>
                                 <p class="message-time ml-2"><%= m.created_at.strftime("%H:%M")%></p>

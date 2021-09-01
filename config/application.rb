@@ -10,6 +10,7 @@ module Ballpark
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.paths.add 'lib', eager_load: true # lib 以下のファイルを読み込み
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
     config.active_record.default_timezone = :local

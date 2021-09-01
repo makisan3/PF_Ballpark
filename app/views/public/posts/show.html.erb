@@ -7,6 +7,7 @@
     <% if player_signed_in? && @player.id == current_player.id %>
       <h3 class="post-show-edit"><%= link_to "️", edit_post_path(@post), class: "fas fa-cog floot-right" %></h3>
     <% end %>
+    <p class="sentiment-score">本文の感情分析スコア[<%= @post.score %>]</p>
   </div>
   <div class="card">
     <h3 class="card-header text-center">

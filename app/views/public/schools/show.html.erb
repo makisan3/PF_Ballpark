@@ -64,7 +64,6 @@
           <% end %>
         </ul>
         <% if school_signed_in? %>
-          <%#= link_to school_likes_players_path(@school.id) do %>
           <%= link_to school_likes_players_path(school_id: params[:id]) do %>
             <p class="pickup-link">All Pickup</p>
           <% end %>

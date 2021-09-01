@@ -6,6 +6,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.score = Language.get_data(post_params[:body])
     @post.player_id = current_player.id
     @post.save
     redirect_to posts_path(player_id: @post.player.id)
