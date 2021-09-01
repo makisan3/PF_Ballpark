@@ -25,7 +25,9 @@
 * 自己アピール更新
 
 ## 設計書
-作成次第、添付します
+* [ER図](https://app.diagrams.net/#G10kamJc2fXY-YGzSvsHkX0Gd9L-LAAI36)
+* [テーブル定義書](https://docs.google.com/spreadsheets/d/1IKr_4ofgEyeq2Y5gqXivO9q6E9oBQUd8IFndDe-uYvs/edit#gid=490553716)
+* [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1IKr_4ofgEyeq2Y5gqXivO9q6E9oBQUd8IFndDe-uYvs/edit#gid=45363133)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1ohnHDPV4HcC3sWiBZ8Xo07htKuRjI-45IRIdFp_olTE/edit#gid=548638777
