@@ -22,7 +22,7 @@
 
 ### 主な利用シーン
 * 選手、学校の情報収集
-* 自己アピールの更新
+* 自己アピール更新
 
 ## 設計書
 * [ER図](https://app.diagrams.net/#G10kamJc2fXY-YGzSvsHkX0Gd9L-LAAI36)
